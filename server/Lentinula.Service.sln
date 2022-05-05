@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.WebAPI", "Lentinula.WebAPI\Lentinula.WebAPI.csproj", "{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
