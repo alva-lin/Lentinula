@@ -1,0 +1,9 @@
+<h1>文章管理</h1>
+
+<button nz-button nzType="primary" (click)="getArticles()">请求数据</button>
+
+<ul>
+  <li *ngFor="let article of articles">
+    {{ article.title }}
+  </li>
+</ul>
