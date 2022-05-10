@@ -1,0 +1,7 @@
+<button (click)="getArticles()">请求数据</button>
+
+<ul>
+  <li *ngFor="let article of articles">
+    {{ article.title }}
+  </li>
+</ul>

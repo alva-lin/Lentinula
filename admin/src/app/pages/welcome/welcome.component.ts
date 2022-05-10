@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ArticleService } from '../../services/article.service';
+import { Article } from '../../models/article';
 
 @Component({
   selector: 'app-welcome',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent {
-  constructor() {}
+  constructor(private articleService: ArticleService) {}
+
+  articles: Article[] = [];
+
+  public getArticles(): void {
+    this.articleService.getArticles().subscribe((articles) => {
+      this.articles = articles;
+    });
+  }
 }
