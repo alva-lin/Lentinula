@@ -1,9 +1,26 @@
 <h1>文章管理</h1>
 
-<button nz-button nzType="primary" (click)="getArticles()">请求数据</button>
+<a nz-button nzType="primary" routerLink="./new">新建文章</a>
 
-<ul>
-  <li *ngFor="let article of articles">
-    {{ article.title }}
-  </li>
-</ul>
+<!--TODO: 表格加载远程数据-->
+<nz-table #nzTable [nzData]="articles">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>创建时间</th>
+      <th>修改时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.title }}</td>
+      <td>{{ data.createTime | date: "yyyy-MM-dd hh:mm" }}</td>
+      <td>{{ data.modifyTime | date: "yyyy-MM-dd hh:mm" }}</td>
+      <td>
+        <a nz-button nzType="default" routerLink="./edit/{{ data.id }}">编辑</a>
+        <button nz-button nzType="default" nzDanger>删除</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
