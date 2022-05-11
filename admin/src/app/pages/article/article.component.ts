@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-article',
@@ -8,7 +9,10 @@ import { Article } from '../../models/article';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-  constructor(private articleService: ArticleService) {}
+  constructor(
+    private articleService: ArticleService,
+    private message: NzMessageService
+  ) {}
 
   articles: Article[] = [];
 
@@ -24,6 +28,7 @@ export class ArticleComponent implements OnInit {
 
   public removeArticle(article: Article): void {
     this.articleService.removeArticle(article.id).subscribe(() => {
+      this.message.create('success', '删除成功');
       this.getArticles();
     });
   }
