@@ -103,6 +103,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/lentinula-blog/**/*.ts",
+              "projects/lentinula-blog/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -131,9 +140,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/lentinula-admin/src/favicon.ico",
-              "projects/lentinula-admin/src/assets"
+              "projects/lentinula-admin/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "projects/lentinula-admin/src/theme.less",
               "projects/lentinula-admin/src/styles.scss"
             ],
             "scripts": []
@@ -206,6 +221,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/lentinula-admin/**/*.ts",
+              "projects/lentinula-admin/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -237,9 +261,21 @@
             "tsConfig": "projects/lentinula-lib/tsconfig.spec.json",
             "karmaConfig": "projects/lentinula-lib/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/lentinula-lib/**/*.ts",
+              "projects/lentinula-lib/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "lentinula-blog"
+  "defaultProject": "lentinula-blog",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

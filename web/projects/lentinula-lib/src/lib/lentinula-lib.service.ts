@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LentinulaLibService {
+  constructor() {}
 
-  constructor() { }
-
-  sayHello(name: string) : string {
+  sayHello(name: string): string {
     return `Hello, ${name || 'World'}!`;
   }
 }

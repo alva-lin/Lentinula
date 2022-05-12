@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../../../models/article';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { ArticleService } from '../../../services/article.service';
 
 @Component({
   selector: 'app-article-edit',

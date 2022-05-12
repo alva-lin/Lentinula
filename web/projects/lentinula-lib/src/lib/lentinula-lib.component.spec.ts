@@ -8,9 +8,8 @@ describe('LentinulaLibComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LentinulaLibComponent ]
-    })
-    .compileComponents();
+      declarations: [LentinulaLibComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
