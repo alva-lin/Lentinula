@@ -10,8 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
       "lentinula-lib": [
-        "dist/lentinula-lib/lentinula-lib",
-        "dist/lentinula-lib"
+        "dist/lentinula-lib",
       ]
     },
     "noImplicitReturns": true,

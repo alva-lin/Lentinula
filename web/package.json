@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "lentinula-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,9 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start blog": "ng serve lentinula-blog --port 4200",
-    "start admin": "ng serve lentinula-admin --port 4300",
-    "lint": "ng lint lentinula-admin"
+    "start blog": "ng serve blog --port 4200",
+    "start admin": "ng serve admin --port 4300",
+    "build lib": "ng build lib --configuration development",
+    "watch build lib": "ng build lib --watch --configuration development",
+    "lint": "ng lint admin"
   },
   "private": true,
   "dependencies": {
