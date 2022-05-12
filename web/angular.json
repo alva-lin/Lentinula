@@ -1,0 +1,245 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "lentinula-blog": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/lentinula-blog",
+      "sourceRoot": "projects/lentinula-blog/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/lentinula-blog",
+            "index": "projects/lentinula-blog/src/index.html",
+            "main": "projects/lentinula-blog/src/main.ts",
+            "polyfills": "projects/lentinula-blog/src/polyfills.ts",
+            "tsConfig": "projects/lentinula-blog/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/lentinula-blog/src/favicon.ico",
+              "projects/lentinula-blog/src/assets"
+            ],
+            "styles": [
+              "projects/lentinula-blog/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/lentinula-blog/src/environments/environment.ts",
+                  "with": "projects/lentinula-blog/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "lentinula-blog:build:production"
+            },
+            "development": {
+              "browserTarget": "lentinula-blog:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lentinula-blog:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lentinula-blog/src/test.ts",
+            "polyfills": "projects/lentinula-blog/src/polyfills.ts",
+            "tsConfig": "projects/lentinula-blog/tsconfig.spec.json",
+            "karmaConfig": "projects/lentinula-blog/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/lentinula-blog/src/favicon.ico",
+              "projects/lentinula-blog/src/assets"
+            ],
+            "styles": [
+              "projects/lentinula-blog/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "lentinula-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/lentinula-admin",
+      "sourceRoot": "projects/lentinula-admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/lentinula-admin",
+            "index": "projects/lentinula-admin/src/index.html",
+            "main": "projects/lentinula-admin/src/main.ts",
+            "polyfills": "projects/lentinula-admin/src/polyfills.ts",
+            "tsConfig": "projects/lentinula-admin/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/lentinula-admin/src/favicon.ico",
+              "projects/lentinula-admin/src/assets"
+            ],
+            "styles": [
+              "projects/lentinula-admin/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/lentinula-admin/src/environments/environment.ts",
+                  "with": "projects/lentinula-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "lentinula-admin:build:production"
+            },
+            "development": {
+              "browserTarget": "lentinula-admin:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lentinula-admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lentinula-admin/src/test.ts",
+            "polyfills": "projects/lentinula-admin/src/polyfills.ts",
+            "tsConfig": "projects/lentinula-admin/tsconfig.spec.json",
+            "karmaConfig": "projects/lentinula-admin/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/lentinula-admin/src/favicon.ico",
+              "projects/lentinula-admin/src/assets"
+            ],
+            "styles": [
+              "projects/lentinula-admin/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "lentinula-lib": {
+      "projectType": "library",
+      "root": "projects/lentinula-lib",
+      "sourceRoot": "projects/lentinula-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lentinula-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lentinula-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lentinula-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lentinula-lib/src/test.ts",
+            "tsConfig": "projects/lentinula-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/lentinula-lib/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "lentinula-blog"
+}
