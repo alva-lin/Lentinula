@@ -25,9 +25,12 @@ export class ArticleComponent implements OnInit {
   getArticle() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id === null || id === 0) {
-      this.router.navigate(['/'], { relativeTo: this.route });
+      this.router.navigate(['/'], { relativeTo: this.route }).then();
     }
     this.articleService.getArticle(id).subscribe((article) => {
+      if (article === null) {
+        this.router.navigate(['/'], { relativeTo: this.route }).then();
+      }
       this.article = article;
       this.isLoading = false;
     });
