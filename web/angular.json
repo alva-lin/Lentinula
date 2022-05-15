@@ -28,9 +28,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/blog/src/favicon.ico",
-              "projects/blog/src/assets"
+              "projects/blog/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "projects/blog/src/theme.less",
               "projects/blog/src/styles.scss"
             ],
             "scripts": []

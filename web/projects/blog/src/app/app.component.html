@@ -1,11 +1,21 @@
-<h1>WHAT？</h1>
-
-<button (click)="clickMe()">Click Me2</button>
-
-<ul>
-  <li *ngFor="let item of msgList">
-    {{ item }}
-  </li>
-</ul>
-
-<lib-lib></lib-lib>
+<nz-layout class="layout">
+  <nz-header>
+    <div class="header">
+      <div class="logo">{{ title }}</div>
+      <ul class="nav" nz-menu nzMode="horizontal" nzTheme="light">
+        <li nz-menu-item><a routerLink="/">首页</a></li>
+        <li nz-menu-item><a routerLink="/timeline">时间线</a></li>
+        <li nz-menu-item><a routerLink="/archive">归档</a></li>
+        <li nz-menu-item><a routerLink="/about">关于</a></li>
+      </ul>
+    </div>
+  </nz-header>
+  <nz-content>
+    <nz-card class="inner-content">
+      <router-outlet></router-outlet>
+    </nz-card>
+  </nz-content>
+  <nz-footer>
+    <a href="https://beian.miit.gov.cn/">{{ IPC }}</a>
+  </nz-footer>
+</nz-layout>

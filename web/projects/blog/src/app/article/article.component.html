@@ -1,0 +1,15 @@
+<div *ngIf="article; else loadingTemplate">
+  <h1>{{ article.title }}</h1>
+  <div>{{ article.createTime | date: "yyyy-MM-dd HH:mm" }}</div>
+  <div>{{ article.modifyTime | date: "yyyy-MM-dd HH:mm" }}</div>
+  <div>{{ article.content }}</div>
+</div>
+
+<ng-template #loadingTemplate
+  ><div class="loading">
+    <ng-template #indicatorTemplate
+      ><i nz-icon nzType="loading"></i
+    ></ng-template>
+    <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+  </div>
+</ng-template>

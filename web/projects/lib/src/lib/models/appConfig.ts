@@ -1,3 +1,3 @@
 export class AppConfig {
-  constructor(public apiUrl: string) {}
+  constructor(public apiUrl: string, public IPC: string) {}
 }

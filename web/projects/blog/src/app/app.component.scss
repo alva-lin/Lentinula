@@ -1,0 +1,51 @@
+.layout {
+  min-height: 100vh;
+}
+
+nz-header {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+.header {
+  width: 900px;
+  margin: auto;
+}
+
+
+.logo {
+  width: 120px;
+  height: 31px;
+  //background: rgba(255, 25, 25, 0.2);
+  margin: 16px 24px 16px 24px;
+  float: left;
+  line-height: 31px;
+  text-align: center;
+  font-size: 2em;
+}
+
+[nz-menu] {
+  line-height: 64px;
+}
+
+nz-content {
+  padding: 30px 50px;
+  margin-top: 64px;
+}
+
+.sidebar {
+}
+
+.inner-content {
+  margin: auto;
+  width: 900px;
+  padding: 24px;
+  background: #ffffff;
+  min-height: 800px;
+}
+
+nz-footer {
+  text-align: center;
+}
+

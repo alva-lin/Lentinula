@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'https://localhost:7042/api/',
+  IPC: '测ICP备xxxxxxxxxx号',
 };
 
 /*
