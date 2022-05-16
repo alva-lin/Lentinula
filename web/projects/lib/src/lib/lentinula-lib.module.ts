@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { LentinulaLibComponent } from './lentinula-lib.component';
-import { MarkdownPipe } from './pipe/markdown.pipe';
+import { MarkedPipe } from './pipe/marked.pipe';
 
 @NgModule({
-  declarations: [LentinulaLibComponent, MarkdownPipe],
+  declarations: [LentinulaLibComponent, MarkedPipe],
   imports: [],
-  exports: [LentinulaLibComponent, MarkdownPipe],
+  exports: [LentinulaLibComponent, MarkedPipe],
 })
 export class LentinulaLibModule {}

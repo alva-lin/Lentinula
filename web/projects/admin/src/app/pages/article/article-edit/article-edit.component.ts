@@ -24,7 +24,6 @@ export class ArticleEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticle();
-    this.initVditor();
   }
 
   initVditor(): void {
@@ -50,10 +49,12 @@ export class ArticleEditComponent implements OnInit {
     this.articleService.getArticle(id).subscribe((article) => {
       this.article = article;
       this.isEdit = true;
+      this.initVditor();
     });
   }
 
   onSubmit(): void {
+    this.article.content = this.vditor.getValue();
     if (this.isEdit) {
       this.articleService
         .updateArticle(this.article.id, this.article)

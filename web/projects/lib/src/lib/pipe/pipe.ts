@@ -1,1 +1,1 @@
-﻿export * from './markdown.pipe';
+﻿export * from './marked.pipe';
