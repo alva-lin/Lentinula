@@ -9,3 +9,4 @@ export * from './lib/lentinula-lib.module';
 export * from './lib/models/models';
 
 export * from './lib/services/services';
+export * from './lib/pipe/pipe';

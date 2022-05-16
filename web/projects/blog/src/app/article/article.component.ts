@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
     if (id === null || id === 0) {
       this.router.navigate(['/'], { relativeTo: this.route }).then();
     }
-    this.articleService.getArticle(id).subscribe((article) => {
+    this.articleService.getArticle(id).subscribe((article: Article) => {
       if (article === null) {
         this.router.navigate(['/'], { relativeTo: this.route }).then();
       }

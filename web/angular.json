@@ -149,13 +149,14 @@
               "projects/admin/src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "input": "node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
               }
             ],
             "styles": [
               "projects/admin/src/theme.less",
-              "projects/admin/src/styles.scss"
+              "projects/admin/src/styles.scss",
+              "node_modules/vditor/src/assets/less/index.less"
             ],
             "scripts": []
           },

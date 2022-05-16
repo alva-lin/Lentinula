@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Article, ArticleService } from 'lentinula-lib';
+import Vditor from 'vditor';
 
 @Component({
   selector: 'app-article-edit',
@@ -12,6 +13,7 @@ import { Article, ArticleService } from 'lentinula-lib';
 export class ArticleEditComponent implements OnInit {
   article: Article = new Article();
   isEdit: boolean = false;
+  vditor!: Vditor;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +24,22 @@ export class ArticleEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticle();
+    this.initVditor();
+  }
+
+  initVditor(): void {
+    this.vditor = new Vditor('vditor', {
+      height: 800,
+      toolbarConfig: {
+        pin: true,
+      },
+      cache: {
+        enable: false,
+      },
+      after: () => {
+        this.vditor.setValue(this.article.content);
+      },
+    });
   }
 
   getArticle(): void {

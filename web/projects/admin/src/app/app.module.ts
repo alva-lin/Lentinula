@@ -13,7 +13,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { environment } from '../environments/environment';
-import { AppConfig } from 'lentinula-lib';
+import { AppConfig, LentinulaLibModule } from 'lentinula-lib';
 
 registerLocaleData(zh);
 
@@ -28,6 +28,7 @@ registerLocaleData(zh);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    LentinulaLibModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

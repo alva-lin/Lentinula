@@ -10,6 +10,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { FormsModule } from '@angular/forms';
+import { LentinulaLibModule } from 'lentinula-lib';
 
 @NgModule({
   declarations: [ArticleComponent, ArticleEditComponent],
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     NzInputModule,
     NzMessageModule,
     FormsModule,
+    LentinulaLibModule,
   ],
 })
 export class ArticleModule {}

@@ -28,14 +28,6 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-label nzFor="content">文章</nz-form-label>
-    <nz-form-control>
-      <textarea
-        nz-input
-        rows="40"
-        id="content"
-        name="content"
-        [(ngModel)]="article.content"
-      ></textarea>
-    </nz-form-control>
+    <nz-form-control> <div id="vditor" name="content"></div></nz-form-control>
   </nz-form-item>
 </form>
