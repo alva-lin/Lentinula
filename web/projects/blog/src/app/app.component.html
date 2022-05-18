@@ -1,7 +1,9 @@
 <nz-layout class="layout">
   <nz-header>
     <div class="header">
-      <div class="logo">{{ title }}</div>
+      <button nz-button nzType="text" class="logo" (click)="toMain()">
+        {{ title }}
+      </button>
       <ul class="nav" nz-menu nzMode="horizontal" nzTheme="light">
         <li nz-menu-item><a routerLink="/">首页</a></li>
         <li nz-menu-item><a routerLink="/timeline">时间线</a></li>
@@ -11,7 +13,7 @@
     </div>
   </nz-header>
   <nz-content>
-    <nz-card class="inner-content">
+    <nz-card class="inner-content" [nzBordered]="false">
       <router-outlet></router-outlet>
     </nz-card>
   </nz-content>

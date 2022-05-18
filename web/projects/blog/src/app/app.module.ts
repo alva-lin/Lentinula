@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 registerLocaleData(zh);
 
@@ -46,6 +47,7 @@ registerLocaleData(zh);
     NzTagModule,
     NzPipesModule,
     NzSpinModule,
+    NzImageModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

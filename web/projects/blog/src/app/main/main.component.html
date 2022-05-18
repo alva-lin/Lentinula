@@ -15,7 +15,7 @@
         </ul>
       </nz-list-item-meta-description>
     </nz-list-item-meta>
-    {{ article.description || article.content | nzEllipsis: 80:"..." }}
+    {{ article.description || article.content | nzEllipsis: 120:"..." }}
     <nz-list-item-extra>
       <img
         width="200"
@@ -24,4 +24,5 @@
       />
     </nz-list-item-extra>
   </nz-list-item>
+  <nz-list-empty *ngIf="articles.length === 0"></nz-list-empty>
 </nz-list>

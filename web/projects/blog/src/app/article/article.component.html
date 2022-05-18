@@ -2,7 +2,10 @@
   <h1>{{ article.title }}</h1>
   <div>{{ article.createTime | date: "yyyy-MM-dd HH:mm" }}</div>
   <div>{{ article.modifyTime | date: "yyyy-MM-dd HH:mm" }}</div>
-  <div class="article-content" [innerHTML]="article.content | marked"></div>
+  <div
+    class="article-content"
+    [innerHTML]="article.content | marked | nzSanitizer: 'html'"
+  ></div>
 </div>
 
 <ng-template #loadingTemplate

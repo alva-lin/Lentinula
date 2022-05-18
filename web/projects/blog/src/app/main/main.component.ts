@@ -23,7 +23,6 @@ export class MainComponent implements OnInit {
     this.articleService.getArticles().subscribe((articles) => {
       this.loading = false;
       this.articles = articles;
-      console.log(articles);
     });
   }
 }

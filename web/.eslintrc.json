@@ -3,6 +3,10 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
   "overrides": [
     {
       "files": [
