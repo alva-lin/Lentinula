@@ -1,4 +1,4 @@
-﻿namespace Lentinula.WebAPI;
+﻿namespace Lentinula.WebAPI.Models;
 
 /// <summary>
 /// 文章

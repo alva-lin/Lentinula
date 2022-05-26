@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Lentinula.WebAPI.Models;
+
+using Microsoft.EntityFrameworkCore;
 #pragma warning disable CS8618
 
 namespace Lentinula.WebAPI;

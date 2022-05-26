@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lentinula.WebAPI.Models;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lentinula.WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ArticleController : ControllerBase
 {
     private readonly LentinulaDbContext _dbContext;
@@ -15,6 +19,7 @@ public class ArticleController : ControllerBase
         _dbContext = dbContext;
     }
     
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -22,6 +27,7 @@ public class ArticleController : ControllerBase
         return Ok(articles);
     }
     
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {

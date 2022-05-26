@@ -1,6 +1,16 @@
-using Lentinula.WebAPI;
+using System.Text;
 
+using Lentinula.WebAPI;
+using Lentinula.WebAPI.IServices;
+using Lentinula.WebAPI.Models;
+using Lentinula.WebAPI.Services;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +35,32 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.Configure<TokenManagement>(builder.Configuration.GetSection("tokenManagement"));
+var token  = builder.Services.BuildServiceProvider().GetService<IOptions<TokenManagement>>();
+var secret = Encoding.ASCII.GetBytes(token!.Value.Secret);
+
+builder.Services.AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
+    })
+   .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken            = true;
+
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey         = new SymmetricSecurityKey(secret),
+            ValidateIssuer           = false,
+            ValidateAudience         = false
+        };
+    });
+
+builder.Services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +73,9 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseRouting();
 
 app.UseAuthorization();
 
