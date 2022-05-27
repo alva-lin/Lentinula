@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Article, ArticleService } from 'lentinula-lib';
 import Vditor from 'vditor';
@@ -19,7 +18,7 @@ export class ArticleEditComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private message: NzMessageService,
-    private location: Location
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +60,7 @@ export class ArticleEditComponent implements OnInit {
         .subscribe((isSuccess) => {
           if (isSuccess) {
             this.message.create('success', '修改成功');
-            this.location.back();
+            this.back();
           } else {
             this.message.create('error', '修改失败');
           }
@@ -70,11 +69,19 @@ export class ArticleEditComponent implements OnInit {
       this.articleService.addArticle(this.article).subscribe((isSuccess) => {
         if (isSuccess) {
           this.message.create('success', '创建成功');
-          this.location.back();
+          this.back();
         } else {
           this.message.create('error', '创建失败');
         }
       });
     }
+  }
+
+  onCancel(): void {
+    this.back();
+  }
+
+  private back(): void {
+    this.router.navigate(['/home/article'], { relativeTo: this.route }).then();
   }
 }

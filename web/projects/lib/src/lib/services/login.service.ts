@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { AppConfig } from '../models/appConfig';
 import { catchError, map, Observable, of } from 'rxjs';
 import { TokenResponse } from '../dto/tokenResponse';
@@ -8,12 +9,15 @@ import { TokenResponse } from '../dto/tokenResponse';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient, private appConfig: AppConfig) {
+  constructor(
+    private http: HttpClient,
+    private appConfig: AppConfig,
+    private router: Router
+  ) {
     this.apiUrl = this.appConfig.apiUrl;
   }
 
   private readonly apiUrl;
-  redirectUrl: string = '/';
 
   login(username: string, password: string): Observable<boolean> {
     const url = `${this.apiUrl}authentication/requesttoken`;
@@ -32,6 +36,7 @@ export class LoginService {
   logout() {
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('authExpireIn');
+    this.router.navigate(['/login', { redirectUrl: this.router.url }]).then();
   }
 
   isLoggedIn() {

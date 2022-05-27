@@ -2,7 +2,6 @@
 
 <a nz-button nzType="primary" routerLink="./new">新建文章</a>
 
-<!--TODO: 表格加载远程数据-->
 <nz-table #nzTable [nzData]="articles">
   <thead>
     <tr>
@@ -18,15 +17,24 @@
       <td>{{ data.createTime | date: "yyyy-MM-dd HH:mm" }}</td>
       <td>{{ data.modifyTime | date: "yyyy-MM-dd HH:mm" }}</td>
       <td>
-        <a nz-button nzType="default" routerLink="./edit/{{ data.id }}">编辑</a>
-        <button
-          nz-button
-          nzType="default"
-          nzDanger
-          (click)="removeArticle(data)"
-        >
-          删除
-        </button>
+        <nz-space>
+          <a
+            *nzSpaceItem
+            nz-button
+            nzType="default"
+            routerLink="./edit/{{ data.id }}"
+            >编辑</a
+          >
+          <button
+            *nzSpaceItem
+            nz-button
+            nzType="default"
+            nzDanger
+            (click)="removeArticle(data)"
+          >
+            删除
+          </button>
+        </nz-space>
       </td>
     </tr>
   </tbody>

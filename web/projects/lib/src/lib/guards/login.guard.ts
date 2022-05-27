@@ -29,7 +29,6 @@ export class LoginGuard implements CanActivate, CanActivateChild {
     }
 
     const url = state.url;
-    this.loginService.redirectUrl = url;
 
     return this.router.createUrlTree(['/login', { redirectUrl: url }]);
   }

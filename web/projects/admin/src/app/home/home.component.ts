@@ -23,14 +23,6 @@ export class HomeComponent {
 
   logout() {
     this.loginService.logout();
-    this.router
-      .navigate([
-        '/login',
-        {
-          redirectUrl: this.router.url,
-        },
-      ])
-      .then();
     this.message.create('success', '退出成功');
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { ArticleComponent } from './article.component';
 import { ArticleRoutingModule } from './article-routing.module';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -25,6 +26,7 @@ import { LentinulaLibModule } from 'lentinula-lib';
     NzMessageModule,
     FormsModule,
     LentinulaLibModule,
+    NzSpaceModule,
   ],
 })
 export class ArticleModule {}
