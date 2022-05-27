@@ -58,14 +58,22 @@ export class ArticleEditComponent implements OnInit {
     if (this.isEdit) {
       this.articleService
         .updateArticle(this.article.id, this.article)
-        .subscribe(() => {
-          this.message.create('success', '修改成功');
-          this.location.back();
+        .subscribe((isSuccess) => {
+          if (isSuccess) {
+            this.message.create('success', '修改成功');
+            this.location.back();
+          } else {
+            this.message.create('error', '修改失败');
+          }
         });
     } else {
-      this.articleService.addArticle(this.article).subscribe(() => {
-        this.message.create('success', '创建成功');
-        this.location.back();
+      this.articleService.addArticle(this.article).subscribe((isSuccess) => {
+        if (isSuccess) {
+          this.message.create('success', '创建成功');
+          this.location.back();
+        } else {
+          this.message.create('error', '创建失败');
+        }
       });
     }
   }

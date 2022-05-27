@@ -4,5 +4,5 @@ namespace Lentinula.WebAPI.IServices;
 
 public interface IAuthenticateService
 {
-    bool IsAuthenticated(LoginRequest request, out string token);
+    bool IsAuthenticated(LoginRequest request, out TokenResponse token);
 }

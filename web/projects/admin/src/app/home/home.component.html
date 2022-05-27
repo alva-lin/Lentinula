@@ -45,6 +45,11 @@
             nz-icon
           ></i>
         </span>
+        <div class="app-toolbar">
+          <ng-template [ngIf]="isLogin">
+            <button nz-button nzType="text" (click)="logout()">注销</button>
+          </ng-template>
+        </div>
       </div>
     </nz-header>
     <nz-content>

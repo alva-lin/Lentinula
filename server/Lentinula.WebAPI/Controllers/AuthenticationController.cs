@@ -31,7 +31,7 @@ public class AuthenticationController : Controller
             return BadRequest("无效的请求");
         }
 
-        if (_authService.IsAuthenticated(request, out string token))
+        if (_authService.IsAuthenticated(request, out var token))
         {
             return Ok(token);
         }

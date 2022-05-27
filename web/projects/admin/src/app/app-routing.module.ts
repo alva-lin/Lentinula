@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from 'lentinula-lib';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
@@ -8,8 +9,9 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [LoginGuard],
+    canActivateChild: [LoginGuard],
     children: [
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       {
         path: 'welcome',
         loadChildren: () =>
@@ -20,6 +22,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/article/article.module').then((m) => m.ArticleModule),
       },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ],
   },
   {

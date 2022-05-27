@@ -25,9 +25,9 @@ public class TokenAuthenticationService : IAuthenticateService
     }
 
 
-    public bool IsAuthenticated(LoginRequest request, out string token)
+    public bool IsAuthenticated(LoginRequest request, out TokenResponse token)
     {
-        token = string.Empty;
+        token = new();
 
         if (!_accountService.IsValid(request))
         {
@@ -42,15 +42,17 @@ public class TokenAuthenticationService : IAuthenticateService
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenManagement.Secret));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         
+        var expiration = DateTime.UtcNow.AddMinutes(_tokenManagement.AccessExpiration);
         var jwtToken = new JwtSecurityToken(
             _tokenManagement.Issuer,
             _tokenManagement.Audience,
             claims,
-            expires: DateTime.Now.AddMinutes(_tokenManagement.AccessExpiration),
+            expires: expiration,
             signingCredentials: credentials
         );
 
-        token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        token.Token    = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        token.ExpireIn = expiration;
 
         return true;
     }

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'lentinula-lib';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +9,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private message: NzMessageService
+  ) {
+    this.isLogin = this.loginService.isLoggedIn();
+  }
+
   isCollapsed = false;
+  isLogin = false;
+
+  logout() {
+    this.loginService.logout();
+    this.router
+      .navigate([
+        '/login',
+        {
+          redirectUrl: this.router.url,
+        },
+      ])
+      .then();
+    this.message.create('success', '退出成功');
+  }
 }
