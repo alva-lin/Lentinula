@@ -1,7 +1,13 @@
 <div *ngIf="article; else loadingTemplate">
   <h1>{{ article.title }}</h1>
-  <div>{{ article.createTime | date: "yyyy-MM-dd HH:mm" }}</div>
-  <div>{{ article.modifyTime | date: "yyyy-MM-dd HH:mm" }}</div>
+  <nz-descriptions>
+    <nz-descriptions-item nzTitle="创建于">{{
+      article.createTime | date: "yyyy-MM-dd HH:mm"
+    }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="修改于">{{
+      article.modifyTime | date: "yyyy-MM-dd HH:mm"
+    }}</nz-descriptions-item>
+  </nz-descriptions>
   <div
     class="article-content"
     [innerHTML]="article.content | marked | nzSanitizer: 'html'"

@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +52,10 @@ registerLocaleData(zh);
     NzPipesModule,
     NzSpinModule,
     NzImageModule,
+    NzEmptyModule,
+    NzSpaceModule,
+    NzDividerModule,
+    NzDescriptionsModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
