@@ -4,6 +4,8 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { LoginService } from 'lentinula-lib';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
+import { sha256 } from 'js-sha256';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,9 +33,11 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.validateForm.valid) {
-      let userName = this.validateForm.controls['userName'].value;
-      let password = this.validateForm.controls['password'].value;
-      this.loginService.login(userName, password).subscribe((isLogin) => {
+      const userName = this.validateForm.controls['userName'].value;
+      const password = this.validateForm.controls['password'].value;
+      const hash = sha256.create();
+      hash.update(password);
+      this.loginService.login(userName, hash.hex()).subscribe((isLogin) => {
         if (isLogin) {
           this.router
             .navigate([this.redirectUrl], this.navigationExtras)
