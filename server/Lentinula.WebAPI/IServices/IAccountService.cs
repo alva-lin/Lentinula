@@ -4,5 +4,5 @@ namespace Lentinula.WebAPI.IServices;
 
 public interface IAccountService
 {
-    bool IsValid(LoginRequest request);
+    Task<bool> IsValid(LoginRequest request);
 }

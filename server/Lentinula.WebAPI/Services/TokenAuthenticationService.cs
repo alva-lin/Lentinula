@@ -25,13 +25,13 @@ public class TokenAuthenticationService : IAuthenticateService
     }
 
 
-    public bool IsAuthenticated(LoginRequest request, out TokenResponse token)
+    public async Task<TokenResponse> IsAuthenticated(LoginRequest request)
     {
-        token = new();
+        var token = new TokenResponse();
 
-        if (!_accountService.IsValid(request))
+        if (! await _accountService.IsValid(request))
         {
-            return false;
+            return token;
         }
 
         var claims = new[]
@@ -54,6 +54,6 @@ public class TokenAuthenticationService : IAuthenticateService
         token.Token    = new JwtSecurityTokenHandler().WriteToken(jwtToken);
         token.ExpireIn = expiration;
 
-        return true;
+        return token;
     }
 }

@@ -13,7 +13,7 @@ namespace Lentinula.WebAPI.Controllers;
 [ApiController]
 public class AuthenticationController : Controller
 {
-    private IAuthenticateService _authService;
+    private readonly IAuthenticateService _authService;
 
 
     public AuthenticationController(IAuthenticateService authService)
@@ -24,18 +24,19 @@ public class AuthenticationController : Controller
 
     [AllowAnonymous]
     [HttpPost, Route("requesttoken")]
-    public ActionResult RequestToken([FromBody] LoginRequest request)
+    public async Task<ActionResult> RequestToken([FromBody] LoginRequest request)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest("无效的请求");
         }
 
-        if (_authService.IsAuthenticated(request, out var token))
+        var token = await _authService.IsAuthenticated(request);
+        if (!string.IsNullOrWhiteSpace(token.Token))
         {
             return Ok(token);
         }
 
-        return BadRequest("用户或密码错误");
+        return BadRequest("账户或密码错误");
     }
 }
