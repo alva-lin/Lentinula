@@ -17,7 +17,7 @@ COPY . /app
 
 RUN ng build lib
 
-RUN ng build admin --prod --aot
+RUN ng build admin --configuration production --aot
 
 FROM nginx:1.13-alpine as final
 
