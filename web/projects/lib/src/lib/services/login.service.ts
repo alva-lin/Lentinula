@@ -34,26 +34,26 @@ export class LoginService {
   }
 
   logout() {
-    sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('authExpireIn');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('authExpireIn');
     this.router.navigate(['/login', { redirectUrl: this.router.url }]).then();
   }
 
   isLoggedIn() {
-    const token = sessionStorage.getItem('authToken');
-    const expireIn = sessionStorage.getItem('authExpireIn');
+    const token = localStorage.getItem('authToken');
+    const expireIn = localStorage.getItem('authExpireIn');
     return (
       token !== null && expireIn !== null && new Date(expireIn) > new Date()
     );
   }
 
   getToken() {
-    return sessionStorage.getItem('authToken');
+    return localStorage.getItem('authToken');
   }
 
   private static setSession(token: TokenResponse) {
-    sessionStorage.setItem('authToken', token.token);
-    sessionStorage.setItem('authExpireIn', token.expireIn.toString());
+    localStorage.setItem('authToken', token.token);
+    localStorage.setItem('authExpireIn', token.expireIn.toString());
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
