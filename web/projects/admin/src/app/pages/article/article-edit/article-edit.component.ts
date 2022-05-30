@@ -43,6 +43,7 @@ export class ArticleEditComponent implements OnInit {
   getArticle(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id === null || id === 0) {
+      this.initVditor();
       return;
     }
     this.articleService.getArticle(id).subscribe((article) => {

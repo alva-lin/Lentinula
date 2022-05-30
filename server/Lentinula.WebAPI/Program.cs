@@ -23,8 +23,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
+    var envName = hostingContext.HostingEnvironment.EnvironmentName;
     config.AddEnvironmentVariables();
     config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+    config.AddJsonFile($"appsettings.{envName}.json", optional: true, reloadOnChange: true);
 });
 
 builder.Services.AddDbContext<LentinulaDbContext>(option =>
