@@ -8,7 +8,11 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  registerLocaleData,
+} from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { environment } from '../environments/environment';
 import { AppConfig, LentinulaLibModule } from 'lentinula-lib';
@@ -60,6 +64,7 @@ registerLocaleData(zh);
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: AppConfig, useValue: environment },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

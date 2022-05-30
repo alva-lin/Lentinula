@@ -1,4 +1,8 @@
-import { registerLocaleData } from '@angular/common';
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  registerLocaleData,
+} from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import zh from '@angular/common/locales/zh';
 import { NgModule } from '@angular/core';
@@ -52,6 +56,7 @@ registerLocaleData(zh);
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: AppConfig, useValue: environment },
     httpInterceptorProviders,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

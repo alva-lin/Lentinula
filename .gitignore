@@ -21,3 +21,4 @@
 **/*.log
 
 **/appsettings.json
+**/environment.prod.ts
