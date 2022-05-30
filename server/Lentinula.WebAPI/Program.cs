@@ -21,6 +21,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.AddEnvironmentVariables();
+    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+});
+
 builder.Services.AddDbContext<LentinulaDbContext>(option =>
 {
     var connectionString = builder.Configuration.GetConnectionString("LentinulaDb");
