@@ -16,9 +16,9 @@
 **/obj
 **/bin
 
-# log
-**/log
-**/*.log
+**/appsettings.*.json
 
-**/appsettings.json
-**/environment.prod.ts
+# Swagger
+src/*/*.xml
+
+

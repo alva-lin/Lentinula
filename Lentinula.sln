@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Api", "src\Lentinula.Api\Lentinula.Api.csproj", "{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{00CD2020-C199-4BB1-A550-997015D501F5}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{CACDA08B-BAE1-4DFF-A03A-E2E8CF077F24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{0D032AA7-3D2B-4D35-9F96-A53FAAE25E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Data", "src\Lentinula.Data\Lentinula.Data.csproj", "{4289EBCC-E671-4660-990C-7A869153BADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Utils", "src\Lentinula.Utils\Lentinula.Utils.csproj", "{C3BEEAD4-A10D-458B-AD60-A297681594E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Blazor.Wasm", "src\Lentinula.Blazor.Wasm\Lentinula.Blazor.Wasm.csproj", "{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4289EBCC-E671-4660-990C-7A869153BADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4289EBCC-E671-4660-990C-7A869153BADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4289EBCC-E671-4660-990C-7A869153BADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4289EBCC-E671-4660-990C-7A869153BADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3BEEAD4-A10D-458B-AD60-A297681594E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BEEAD4-A10D-458B-AD60-A297681594E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3BEEAD4-A10D-458B-AD60-A297681594E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BEEAD4-A10D-458B-AD60-A297681594E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CACDA08B-BAE1-4DFF-A03A-E2E8CF077F24} = {0D032AA7-3D2B-4D35-9F96-A53FAAE25E81}
+		{2A6AF940-C3FF-4DE8-9542-89EFE342C4DC} = {CACDA08B-BAE1-4DFF-A03A-E2E8CF077F24}
+		{4289EBCC-E671-4660-990C-7A869153BADC} = {0D032AA7-3D2B-4D35-9F96-A53FAAE25E81}
+		{C3BEEAD4-A10D-458B-AD60-A297681594E9} = {0D032AA7-3D2B-4D35-9F96-A53FAAE25E81}
+		{D7C3A47C-32E2-4807-8BD4-A7C072CECA9F} = {CACDA08B-BAE1-4DFF-A03A-E2E8CF077F24}
+	EndGlobalSection
+EndGlobal
