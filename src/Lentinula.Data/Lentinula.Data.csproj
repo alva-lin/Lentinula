@@ -32,4 +32,8 @@
         <ProjectReference Include="..\Lentinula.Utils\Lentinula.Utils.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Lentinula.Data.xml" />
+    </ItemGroup>
+
 </Project>

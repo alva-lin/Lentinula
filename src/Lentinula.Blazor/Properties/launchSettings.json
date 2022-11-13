@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Lentinula.Blazor.Wasm": {
+    "Lentinula.Blazor": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

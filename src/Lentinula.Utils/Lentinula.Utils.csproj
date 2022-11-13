@@ -16,4 +16,8 @@
         <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Lentinula.Utils.xml" />
+    </ItemGroup>
+
 </Project>

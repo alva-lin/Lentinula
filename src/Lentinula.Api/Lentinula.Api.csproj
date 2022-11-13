@@ -36,5 +36,15 @@
         <ProjectReference Include="..\Lentinula.Data\Lentinula.Data.csproj" />
         <ProjectReference Include="..\Lentinula.Utils\Lentinula.Utils.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Lentinula.Api.xml" />
+    </ItemGroup>
 
 </Project>
