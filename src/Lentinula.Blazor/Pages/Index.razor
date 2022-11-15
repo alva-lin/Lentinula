@@ -1,6 +1,13 @@
 ﻿@page "/"
 
-<h1 class="bg-sky-300">Hello, world!</h1>
+<div class="px-6">
+    
+
+@for (var i = 0; i < 30; i++)
+{
+    <div class="my-2">Hello, world! @($"{i:00}")</div>
+}
+</div>
 
 @code {
 

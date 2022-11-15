@@ -47,3 +47,5 @@ src/*/appsettings.*.json
 
 # Swagger
 src/*/*.xml
+
+**/wwwroot/css/*

@@ -1,0 +1,16 @@
+﻿<div class="bg-slate-200 flex flex-1 ">
+    <button @onclick="Callback" class="w-[180px] text-2xl leading-8 px-2 py-4 float-left hover:bg-slate-300"
+            type="button" >
+        @Logo
+    </button>
+</div>
+
+@code {
+
+    private void Callback(MouseEventArgs obj)
+    {
+        Console.WriteLine("Click Logo");
+    }
+
+    private string Logo = "Lentinula";
+}
