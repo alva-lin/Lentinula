@@ -1,5 +1,6 @@
-﻿<div class="bg-slate-200 flex flex-1 ">
-    <button @onclick="Callback" class="w-[180px] text-2xl leading-8 px-2 py-4 float-left hover:bg-slate-300"
+﻿<div class="bg-slate-200 flex flex-1" >
+    <button class="float-left hover:bg-slate-300 leading-8 px-2 py-4 text-2xl w-[180px]"
+            @onclick="Callback"
             type="button" >
         @Logo
     </button>
@@ -12,5 +13,6 @@
         Console.WriteLine("Click Logo");
     }
 
+    // ReSharper disable once InconsistentNaming
     private string Logo = "Lentinula";
 }

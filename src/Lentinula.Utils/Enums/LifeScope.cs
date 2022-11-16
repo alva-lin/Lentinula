@@ -4,5 +4,5 @@ public enum LifeScope
 {
     Singleton,
     Scope,
-    Transient,
+    Transient
 }

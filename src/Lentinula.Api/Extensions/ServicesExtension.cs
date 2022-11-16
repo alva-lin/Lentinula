@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
-using Lentinula.Api.Common;
-using Lentinula.Api.Options;
+using Lentinula.Core.Common;
+using Lentinula.Core.Options;
 using Lentinula.Utils.Common;
 using Lentinula.Utils.Enums;
 
@@ -15,7 +15,7 @@ namespace Lentinula.Api.Extensions;
 public static class ServicesExtension
 {
     /// <summary>
-    /// 所有加载的程序集
+    ///     所有加载的程序集
     /// </summary>
     private static Assembly[] AllAssemblies => AppDomain.CurrentDomain.GetAssemblies()
         .Where(assembly => assembly.FullName!.StartsWith(AppDomain.CurrentDomain.FriendlyName.Split('.')[0]))
@@ -98,7 +98,7 @@ public static class ServicesExtension
         services.AddCors(options =>
         {
             var serviceProvider = services.BuildServiceProvider();
-            var corsOption      = serviceProvider!.GetRequiredService<IOptions<CorsOption>>().Value;
+            var corsOption = serviceProvider!.GetRequiredService<IOptions<CorsOption>>().Value;
 
             options.AddPolicy("Develop", builder =>
             {

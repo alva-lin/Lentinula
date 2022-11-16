@@ -3,29 +3,29 @@
 namespace Lentinula.Utils.Common.Response;
 
 /// <summary>
-/// 接口返回值包装类
+///     接口返回值包装类
 /// </summary>
 /// <typeparam name="TEntity"></typeparam>
 // ReSharper disable once ConvertToStaticClass
 public class ResponseResult<TEntity>
 {
     /// <summary>
-    /// 返回值代码
+    ///     返回值代码
     /// </summary>
     public int Code { get; init; }
 
     /// <summary>
-    /// 返回值
+    ///     返回值
     /// </summary>
     public TEntity? Data { get; init; }
 
     /// <summary>
-    /// 消息
+    ///     消息
     /// </summary>
     public string? Message { get; init; }
 
     /// <summary>
-    /// 错误消息
+    ///     错误消息
     /// </summary>
     public string? ErrorMessage { get; init; }
 
@@ -35,9 +35,9 @@ public class ResponseResult<TEntity>
     {
         return new()
         {
-            Data = data,
-            Code = 0,
-            Message = message,
+            Data    = data,
+            Code    = 0,
+            Message = message
         };
     }
 
@@ -45,10 +45,10 @@ public class ResponseResult<TEntity>
     {
         return new()
         {
-            Data = data,
-            Code = code,
-            Message = message,
-            ErrorMessage = errorMessage ?? code.ToDescription(),
+            Data         = data,
+            Code         = code,
+            Message      = message,
+            ErrorMessage = errorMessage ?? code.ToDescription()
         };
     }
 
@@ -56,10 +56,10 @@ public class ResponseResult<TEntity>
     {
         return new()
         {
-            Data = data,
-            Code = code,
-            Message = message,
-            ErrorMessage = errorMessage ?? code.ToDescription(),
+            Data         = data,
+            Code         = code,
+            Message      = message,
+            ErrorMessage = errorMessage ?? code.ToDescription()
         };
     }
 

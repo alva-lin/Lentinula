@@ -1,6 +1,8 @@
 ﻿using Lentinula.Api.Common;
-using Lentinula.Data;
-using Lentinula.Data.Models;
+using Lentinula.Core;
+using Lentinula.Core.Aggregates.Articles;
+using Lentinula.Core.Aggregates.Articles.Dto;
+using Lentinula.Core.Aggregates.Articles.Services;
 using Lentinula.Utils.Common;
 using Lentinula.Utils.Common.Response;
 
@@ -10,24 +12,38 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lentinula.Api.Controllers;
 
-[Authorize]
+/// <summary>
+///     文章控制器
+/// </summary>
+// [Authorize]
 public class ArticleController : BasicController
 {
+    private readonly IArticleService _articleService;
     private readonly LentinulaDbContext _dbContext;
 
-    public ArticleController(LentinulaDbContext dbContext)
+    public ArticleController(LentinulaDbContext dbContext, IArticleService articleService)
     {
-        _dbContext = dbContext;
+        _dbContext      = dbContext;
+        _articleService = articleService;
     }
 
+    /// <summary>
+    ///     获取文章列表
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ResponseResult<List<ArticleInfoDto>>> Get(CancellationToken cancellationToken)
     {
-        var articles = await _dbContext.Articles.ToListAsync();
-        return Ok(articles);
+        return await _articleService.GetArticles(1, 10, cancellationToken);
     }
 
+    /// <summary>
+    ///     获取文章详情
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<ResponseResult<Article>> Get(int id)
@@ -36,11 +52,15 @@ public class ArticleController : BasicController
         return article;
     }
 
+    /// <summary>
+    ///     新增文章
+    /// </summary>
+    /// <param name="article"></param>
+    /// <returns></returns>
     [HttpPost]
-    public async Task<ResponseResult<VoidObject>> Post(Article article)
+    public async Task<ResponseResult<VoidObject>> Post(ArticleAddDto article)
     {
-        _dbContext.Articles.Add(article);
-        await _dbContext.SaveChangesAsync();
+        await _articleService.AddArticle(article);
         return VoidObject.Instance;
     }
 

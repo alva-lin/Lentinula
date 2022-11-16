@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-using Lentinula.Data;
 using Lentinula.Api.Common;
 using Lentinula.Api.Extensions;
+using Lentinula.Core;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +18,7 @@ builder.Services.AddControllers(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.ReferenceHandler     = ReferenceHandler.IgnoreCycles;
-}).AddNewtonsoftJson();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {

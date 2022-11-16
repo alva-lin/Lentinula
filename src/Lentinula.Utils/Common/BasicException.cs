@@ -12,7 +12,7 @@ public class BasicException : Exception
         Exception? innerException = null)
         : base(message ?? code.ToDescription(), innerException)
     {
-        Code = code;
+        Code       = code;
         ErrorInfos = errorInfos;
     }
 

@@ -10,7 +10,7 @@ public class BasicExceptionMiddleware
 
     public BasicExceptionMiddleware(RequestDelegate next, ILogger<BasicExceptionMiddleware> logger)
     {
-        _next = next;
+        _next   = next;
         _logger = logger;
     }
 

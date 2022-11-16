@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DocumentationFile>Lentinula.Utils.xml</DocumentationFile>
         <NoWarn>1701;1702;1591</NoWarn>
@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Lentinula.Utils.xml" />
+        <None Remove="Lentinula.Utils.xml"/>
     </ItemGroup>
 
 </Project>

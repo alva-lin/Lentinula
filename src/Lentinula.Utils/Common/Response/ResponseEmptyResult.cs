@@ -8,9 +8,9 @@ public class ResponseEmptyResult : ResponseResult<VoidObject>
     {
         return new()
         {
-            Data = VoidObject.Instance,
-            Code = 0,
-            Message = message,
+            Data    = VoidObject.Instance,
+            Code    = 0,
+            Message = message
         };
     }
 
@@ -18,10 +18,10 @@ public class ResponseEmptyResult : ResponseResult<VoidObject>
     {
         return new()
         {
-            Data = VoidObject.Instance,
-            Code = code,
-            Message = message,
-            ErrorMessage = errorMessage ?? code.ToDescription(),
+            Data         = VoidObject.Instance,
+            Code         = code,
+            Message      = message,
+            ErrorMessage = errorMessage ?? code.ToDescription()
         };
     }
 
@@ -29,10 +29,10 @@ public class ResponseEmptyResult : ResponseResult<VoidObject>
     {
         return new()
         {
-            Data = VoidObject.Instance,
-            Code = code,
-            Message = message,
-            ErrorMessage = errorMessage ?? code.ToDescription(),
+            Data         = VoidObject.Instance,
+            Code         = code,
+            Message      = message,
+            ErrorMessage = errorMessage ?? code.ToDescription()
         };
     }
 

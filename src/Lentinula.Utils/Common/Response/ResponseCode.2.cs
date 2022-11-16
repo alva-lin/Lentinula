@@ -9,16 +9,6 @@ public static partial class ResponseCode
 {
     private static readonly Dictionary<int, string> Cache;
 
-    public static string ToDescription(this int code)
-    {
-        if (Cache.TryGetValue(code, out var value))
-        {
-            return value;
-        }
-
-        return "unknown code";
-    }
-
     static ResponseCode()
     {
         var fields = typeof(ResponseCode).GetFields(BindingFlags.Public | BindingFlags.Static)
@@ -41,5 +31,15 @@ public static partial class ResponseCode
                 Cache.Add(key, description);
             }
         }
+    }
+
+    public static string ToDescription(this int code)
+    {
+        if (Cache.TryGetValue(code, out var value))
+        {
+            return value;
+        }
+
+        return "unknown code";
     }
 }

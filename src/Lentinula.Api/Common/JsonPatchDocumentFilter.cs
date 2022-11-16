@@ -12,10 +12,12 @@ public class JsonPatchDocumentFilter : IDocumentFilter
         foreach (var item in schemas)
         {
             if (item.Key.StartsWith("Operation") || item.Key.StartsWith("JsonPatchDocument"))
+            {
                 swaggerDoc.Components.Schemas.Remove(item.Key);
+            }
         }
 
-        swaggerDoc.Components.Schemas.Add("Operation", new OpenApiSchema
+        swaggerDoc.Components.Schemas.Add("Operation", new()
         {
             Type = "object",
             Properties = new Dictionary<string, OpenApiSchema>
@@ -26,27 +28,31 @@ public class JsonPatchDocumentFilter : IDocumentFilter
             }
         });
 
-        swaggerDoc.Components.Schemas.Add("JsonPatchDocument", new OpenApiSchema
+        swaggerDoc.Components.Schemas.Add("JsonPatchDocument", new()
         {
             Type = "array",
-            Items = new OpenApiSchema
+            Items = new()
             {
-                Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "Operation" }
+                Reference = new()
+                    { Type = ReferenceType.Schema, Id = "Operation" }
             },
-            Description = "Array of operations to perform",
+            Description = "Array of operations to perform"
         });
 
         foreach (var path in swaggerDoc.Paths.SelectMany(p => p.Value.Operations)
                      .Where(p => p.Key == OperationType.Patch))
         {
             foreach (var item in path.Value.RequestBody.Content.Where(c => c.Key != "application/json-patch+json"))
+            {
                 path.Value.RequestBody.Content.Remove(item.Key);
+            }
 
             var response = path.Value.RequestBody.Content.SingleOrDefault(c => c.Key == "application/json-patch+json");
 
-            response.Value.Schema = new OpenApiSchema
+            response.Value.Schema = new()
             {
-                Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "JsonPatchDocument" },
+                Reference = new()
+                    { Type = ReferenceType.Schema, Id = "JsonPatchDocument" }
             };
         }
     }

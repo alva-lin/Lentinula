@@ -1,15 +1,15 @@
 ﻿{
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "Lentinula.Api": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:39001",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+    "$schema": "https://json.schemastore.org/launchsettings.json",
+    "profiles": {
+        "Lentinula.Api": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": false,
+            "launchUrl": "swagger",
+            "applicationUrl": "https://localhost:39001",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        }
     }
-  }
 }

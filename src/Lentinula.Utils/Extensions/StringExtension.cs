@@ -5,13 +5,25 @@ namespace Lentinula.Utils.Extensions;
 
 public static class StringExtension
 {
-    public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str) => string.IsNullOrWhiteSpace(str);
+    public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? str)
+    {
+        return string.IsNullOrWhiteSpace(str);
+    }
 
-    public static bool IsNotNullOrWhiteSpace([NotNullWhen(true)] this string? str) => !string.IsNullOrWhiteSpace(str);
+    public static bool IsNotNullOrWhiteSpace([NotNullWhen(true)] this string? str)
+    {
+        return !string.IsNullOrWhiteSpace(str);
+    }
 
-    public static bool IsNullOrEmpty([NotNullWhen(false)] this string? str) => string.IsNullOrEmpty(str);
+    public static bool IsNullOrEmpty([NotNullWhen(false)] this string? str)
+    {
+        return string.IsNullOrEmpty(str);
+    }
 
-    public static bool IsNotNullOrEmpty([NotNullWhen(true)] this string? str) => !string.IsNullOrEmpty(str);
+    public static bool IsNotNullOrEmpty([NotNullWhen(true)] this string? str)
+    {
+        return !string.IsNullOrEmpty(str);
+    }
 
     public static string ToCamelCase(this string str)
     {
@@ -22,7 +34,7 @@ public static class StringExtension
         return str.ToLowerInvariant();
     }
 
-    public static string UrlEncode(this string str, System.Text.Encoding? e  = null)
+    public static string UrlEncode(this string str, Encoding? e = null)
     {
         if (e == null)
         {
@@ -30,8 +42,8 @@ public static class StringExtension
         }
         return HttpUtility.UrlEncode(str, e);
     }
-    
-    public static string UrlDecode(this string str, System.Text.Encoding? e  = null)
+
+    public static string UrlDecode(this string str, Encoding? e = null)
     {
         if (e == null)
         {
@@ -48,6 +60,7 @@ public static class StringExtension
         }
         return str;
     }
+
     public static string TrimEnd(this string str, string suffix)
     {
         if (str.EndsWith(suffix))

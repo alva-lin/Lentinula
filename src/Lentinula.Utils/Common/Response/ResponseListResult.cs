@@ -8,10 +8,10 @@ public class ResponseListResult<TEntity> : ResponseResult<List<TEntity>>
     {
         return new()
         {
-            Data = data,
+            Data       = data,
             TotalCount = totalCount,
-            Code = 0,
-            Message = message,
+            Code       = 0,
+            Message    = message
         };
     }
 

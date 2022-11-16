@@ -4,7 +4,7 @@ public sealed record VoidObject
 {
     private static readonly Lazy<VoidObject> Lazy = new(() => new());
 
-    public static VoidObject Instance => Lazy.Value;
-
     private VoidObject() { }
+
+    public static VoidObject Instance => Lazy.Value;
 }

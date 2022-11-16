@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{0D032AA7-3D2B-4D35-9F96-A53FAAE25E81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Data", "src\Lentinula.Data\Lentinula.Data.csproj", "{4289EBCC-E671-4660-990C-7A869153BADC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Core", "src\Lentinula.Core\Lentinula.Core.csproj", "{4289EBCC-E671-4660-990C-7A869153BADC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lentinula.Utils", "src\Lentinula.Utils\Lentinula.Utils.csproj", "{C3BEEAD4-A10D-458B-AD60-A297681594E9}"
 EndProject
