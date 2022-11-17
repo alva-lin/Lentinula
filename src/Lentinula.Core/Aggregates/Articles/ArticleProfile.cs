@@ -9,7 +9,10 @@ public class ArticleProfile : Profile
     public ArticleProfile()
     {
         CreateMap<Article, ArticleInfoDto>();
+        CreateMap<Article, ArticleDto>();
+        CreateMap<Article, ArticleRecycleBinDto>();
 
         CreateMap<ArticleAddDto, Article>();
+        CreateMap<ArticleUpdateDto, Article>();
     }
 }

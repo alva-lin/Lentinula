@@ -1,6 +1,4 @@
 ﻿using Lentinula.Api.Common;
-using Lentinula.Core;
-using Lentinula.Core.Aggregates.Articles;
 using Lentinula.Core.Aggregates.Articles.Dto;
 using Lentinula.Core.Aggregates.Articles.Services;
 using Lentinula.Utils.Common;
@@ -8,7 +6,6 @@ using Lentinula.Utils.Common.Response;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Lentinula.Api.Controllers;
 
@@ -19,24 +16,37 @@ namespace Lentinula.Api.Controllers;
 public class ArticleController : BasicController
 {
     private readonly IArticleService _articleService;
-    private readonly LentinulaDbContext _dbContext;
 
-    public ArticleController(LentinulaDbContext dbContext, IArticleService articleService)
+    public ArticleController(IArticleService articleService)
     {
-        _dbContext      = dbContext;
         _articleService = articleService;
     }
 
     /// <summary>
     ///     获取文章列表
     /// </summary>
+    /// <param name="pageIndex"></param>
+    /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [AllowAnonymous]
     [HttpGet]
-    public async Task<ResponseResult<List<ArticleInfoDto>>> Get(CancellationToken cancellationToken)
+    public async Task<ResponseResult<List<ArticleInfoDto>>> Get(uint pageIndex = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
     {
-        return await _articleService.GetArticles(1, 10, cancellationToken);
+        return await _articleService.GetList(pageIndex, pageSize, cancellationToken);
+    }
+
+    /// <summary>
+    ///     获取回收站中的文章列表
+    /// </summary>
+    /// <param name="pageIndex"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("[action]")]
+    public async Task<ResponseResult<List<ArticleRecycleBinDto>>> GetListInRecycleBin(uint pageIndex = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
+    {
+        return await _articleService.GetListInRecycleBin(pageIndex, pageSize, cancellationToken);
     }
 
     /// <summary>
@@ -46,9 +56,9 @@ public class ArticleController : BasicController
     /// <returns></returns>
     [AllowAnonymous]
     [HttpGet("{id}")]
-    public async Task<ResponseResult<Article>> Get(int id)
+    public async Task<ResponseResult<ArticleDto>> Get(long id)
     {
-        var article = await _dbContext.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        var article = await _articleService.Get(id);
         return article;
     }
 
@@ -57,38 +67,58 @@ public class ArticleController : BasicController
     /// </summary>
     /// <param name="article"></param>
     /// <returns></returns>
-    [HttpPost]
-    public async Task<ResponseResult<VoidObject>> Post(ArticleAddDto article)
+    [HttpPost("[action]")]
+    public async Task<ResponseResult<VoidObject>> Add(ArticleAddDto article)
     {
-        await _articleService.AddArticle(article);
+        await _articleService.Add(article);
         return VoidObject.Instance;
     }
 
-    [HttpPut("{id}")]
-    public async Task<ResponseResult<VoidObject>> Put(int id, Article article)
+    /// <summary>
+    ///     更新文章
+    /// </summary>
+    /// <param name="article"></param>
+    /// <returns></returns>
+    [HttpPost("[action]")]
+    public async Task<ResponseResult<VoidObject>> Update(ArticleUpdateDto article)
     {
-        var articleToUpdate = await _dbContext.Articles.FirstOrDefaultAsync(x => x.Id == id);
-
-        if (articleToUpdate is null)
-        {
-            throw new BasicException(ResponseCode.Fail, "找不到指定的文章");
-        }
-        articleToUpdate.Title   = article.Title;
-        articleToUpdate.Content = article.Content;
-        await _dbContext.SaveChangesAsync();
+        await _articleService.Update(article);
         return VoidObject.Instance;
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ResponseResult<VoidObject>> Delete(int id)
+    /// <summary>
+    ///     将文章移动到回收站
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    [HttpPost("[action]")]
+    public async Task<ResponseResult<VoidObject>> MoveToRecycleBin(long[] ids)
     {
-        var articleToDelete = await _dbContext.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        await _articleService.MoveToRecycleBin(ids);
+        return VoidObject.Instance;
+    }
 
-        if (articleToDelete != null)
-        {
-            _dbContext.Articles.Remove(articleToDelete);
-            await _dbContext.SaveChangesAsync();
-        }
+    /// <summary>
+    ///     将文章从回收站恢复
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    [HttpPost("[action]")]
+    public async Task<ResponseResult<VoidObject>> RestoreFromRecycleBin(long[] ids)
+    {
+        await _articleService.RestoreFromRecycleBin(ids);
+        return VoidObject.Instance;
+    }
+
+    /// <summary>
+    ///     删除文章
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    [HttpDelete()]
+    public async Task<ResponseResult<VoidObject>> Delete(long[] ids)
+    {
+        await _articleService.Delete(ids);
         return VoidObject.Instance;
     }
 }

@@ -24,7 +24,7 @@ public class UserController : BasicController
     [AllowAnonymous]
     [HttpPost]
     [Route("[action]")]
-    public async Task<ResponseResult<VoidObject>> Register([FromBody] RegisterDto dto, IUserService userService, CancellationToken cancellationToken)
+    public async Task<ResponseResult<VoidObject>> Register([FromBody] RegisterDto dto, IUserService userService, CancellationToken cancellationToken = default)
     {
         await userService.Register(dto, cancellationToken);
         return VoidObject.Instance;
@@ -40,7 +40,7 @@ public class UserController : BasicController
     [AllowAnonymous]
     [HttpPost]
     [Route("[action]")]
-    public async Task<ResponseResult<string>> Login([FromBody] LoginDto dto, IUserService userService, CancellationToken cancellationToken)
+    public async Task<ResponseResult<string>> Login([FromBody] LoginDto dto, IUserService userService, CancellationToken cancellationToken = default)
     {
         return await userService.Login(dto, cancellationToken);
     }
