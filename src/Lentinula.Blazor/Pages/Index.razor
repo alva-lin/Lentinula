@@ -1,14 +1,45 @@
 ﻿@page "/"
+@using Lentinula.Core.Aggregates.Articles.Dto
+@using Lentinula.Utils.Common.Response
+@inject IHttpClientFactory HttpClientFactory
 
 <div class="px-6" >
-
-
-    @for (var i = 0; i < 30; i++)
+    @if (articles != null && articles.Count > 0)
     {
-        <div class="my-2" >Hello, world! @($"{i:00}")</div>
+        @foreach (var article in articles)
+        {
+            <div>@article.Title</div>
+        }
     }
 </div>
 
 @code {
+
+    private List<ArticleInfoDto>? articles;
+
+    private uint pageIndex = 1;
+    private uint pageSize = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await GetArticlesAsync(pageIndex, pageSize);
+    }
+
+    protected async Task<List<ArticleInfoDto>?> GetArticlesAsync(uint pageIndex, uint pageSize)
+    {
+        // TODO 类型化 HttpClient
+        var http = HttpClientFactory.CreateClient("Lentinula.Api");
+        var query = new Dictionary<string, string>()
+        {
+            ["pageIndex"] = pageIndex.ToString(),
+            ["pageSize"] = pageSize.ToString()
+        };
+        var response = await http.GetFromJsonAsync<ResponseListResult<ArticleInfoDto>>("Article");
+        if (response is not null && response.Code == ResponseCode.Success)
+        {
+            return response.Data;
+        }
+        return null;
+    }
 
 }

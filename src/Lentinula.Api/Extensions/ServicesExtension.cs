@@ -101,7 +101,7 @@ public static class ServicesExtension
             var serviceProvider = services.BuildServiceProvider();
             var corsOption = serviceProvider!.GetRequiredService<IOptions<CorsOption>>().Value;
 
-            options.AddPolicy("Develop", builder =>
+            options.AddDefaultPolicy(builder =>
             {
                 builder.WithOrigins(corsOption.AllowOrigins);
             });

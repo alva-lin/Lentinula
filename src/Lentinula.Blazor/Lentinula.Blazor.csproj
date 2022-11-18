@@ -18,17 +18,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="..\..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
-        <None Remove="Lentinula.Blazor.xml"/>
+        <None Remove="Lentinula.Blazor.xml" />
     </ItemGroup>
 
-    <Import Project="TailwindCli.targets"/>
+    <ItemGroup>
+      <ProjectReference Include="..\Lentinula.Core\Lentinula.Core.csproj" />
+    </ItemGroup>
+
+    <Import Project="TailwindCli.targets" />
 
 </Project>
