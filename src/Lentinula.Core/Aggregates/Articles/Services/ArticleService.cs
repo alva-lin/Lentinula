@@ -51,9 +51,13 @@ public class ArticleService : IArticleService
 
     public async Task Update(ArticleUpdateDto updateDto)
     {
-        var article = _mapper.Map<Article>(updateDto);
-        _dbContext.Articles.Update(article);
-        await _dbContext.SaveChangesAsync();
+        var origin = await _dbContext.Articles.FindAsync(updateDto.Id);
+        if (origin != null)
+        {
+            var article = _mapper.Map(updateDto, origin);
+            _dbContext.Articles.Update(article);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 
     public async Task MoveToRecycleBin(long[] ids)

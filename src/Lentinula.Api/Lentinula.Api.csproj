@@ -19,20 +19,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lentinula.Core\Lentinula.Core.csproj"/>
-        <ProjectReference Include="..\Lentinula.Utils\Lentinula.Utils.csproj"/>
+        <ProjectReference Include="..\Lentinula.Core\Lentinula.Core.csproj" />
+        <ProjectReference Include="..\Lentinula.Utils\Lentinula.Utils.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -42,7 +42,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Lentinula.Api.xml"/>
+        <None Remove="Lentinula.Api.xml" />
     </ItemGroup>
 
 </Project>

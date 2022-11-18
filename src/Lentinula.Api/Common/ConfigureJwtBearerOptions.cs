@@ -1,10 +1,12 @@
 ﻿using System.Text;
 
+using Lentinula.Core.Options;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Lentinula.Core.Options;
+namespace Lentinula.Api.Common;
 
 public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
 {
