@@ -4,7 +4,34 @@ public class ResponseListResult<TEntity> : ResponseResult<List<TEntity>>
 {
     public int? TotalCount { get; set; }
 
-    public static ResponseListResult<TEntity> Success(List<TEntity> data, int? totalCount = null, string? message = null)
+    #region Implicit
+
+    public static implicit operator ResponseListResult<TEntity>(List<TEntity> data)
+    {
+        return ResponseListResult.Success(data);
+    }
+
+    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, int TotalCount) tuple)
+    {
+        return ResponseListResult.Success(tuple.Data, tuple.TotalCount);
+    }
+
+    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, string Message) tuple)
+    {
+        return ResponseListResult.Success(tuple.Data, message: tuple.Message);
+    }
+
+    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, int TotalCount, string Message) tuple)
+    {
+        return ResponseListResult.Success(tuple.Data, tuple.TotalCount, tuple.Message);
+    }
+
+    #endregion
+}
+
+public static class ResponseListResult
+{
+    public static ResponseListResult<TEntity> Success<TEntity>(List<TEntity> data, int? totalCount = null, string? message = null)
     {
         return new()
         {
@@ -14,28 +41,4 @@ public class ResponseListResult<TEntity> : ResponseResult<List<TEntity>>
             Message    = message
         };
     }
-
-    #region Implicit
-
-    public static implicit operator ResponseListResult<TEntity>(List<TEntity> data)
-    {
-        return Success(data);
-    }
-
-    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, int TotalCount) tuple)
-    {
-        return Success(tuple.Data, tuple.TotalCount);
-    }
-
-    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, string Message) tuple)
-    {
-        return Success(tuple.Data, message: tuple.Message);
-    }
-
-    public static implicit operator ResponseListResult<TEntity>((List<TEntity> Data, int TotalCount, string Message) tuple)
-    {
-        return Success(tuple.Data, tuple.TotalCount, tuple.Message);
-    }
-
-    #endregion
 }

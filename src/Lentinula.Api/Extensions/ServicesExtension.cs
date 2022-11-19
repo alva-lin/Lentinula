@@ -5,6 +5,7 @@ using Lentinula.Core.Common;
 using Lentinula.Core.Options;
 using Lentinula.Utils.Common;
 using Lentinula.Utils.Enums;
+using Lentinula.Utils.Helpers;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -15,17 +16,6 @@ namespace Lentinula.Api.Extensions;
 
 public static class ServicesExtension
 {
-    /// <summary>
-    ///     所有加载的程序集
-    /// </summary>
-    private static Assembly[] AllAssemblies => AppDomain.CurrentDomain.GetAssemblies()
-        .Where(assembly => assembly.FullName!.StartsWith(AppDomain.CurrentDomain.FriendlyName.Split('.')[0]))
-        .OrderBy(assembly => assembly.FullName).ToArray();
-
-    private static Type[] AllTypes => AllAssemblies.SelectMany(assembly => assembly.GetTypes()).ToArray();
-
-    public static Type[] AllNormalTypes => AllTypes.Where(type => type.IsClass && !type.IsGenericType && !type.IsAbstract).ToArray();
-
     public static void IncludeAllXmlComments(this SwaggerGenOptions options)
     {
         var basePath = Directory.GetParent(Environment.CurrentDirectory);
@@ -46,7 +36,7 @@ public static class ServicesExtension
     /// </summary>
     public static IServiceCollection AddBasicServiceByLifeScope(this IServiceCollection services)
     {
-        var types = AllNormalTypes
+        var types = ReflectionHelper.Instance.AllNormalTypes
             .Where(type => type.GetInterface(nameof(IBasicService)) != null)
             .ToList();
 
@@ -103,7 +93,7 @@ public static class ServicesExtension
 
             options.AddDefaultPolicy(builder =>
             {
-                builder.WithOrigins(corsOption.AllowOrigins);
+                builder.WithOrigins(corsOption.AllowOrigins).WithHeaders(corsOption.AllowHeaders);
             });
         });
 

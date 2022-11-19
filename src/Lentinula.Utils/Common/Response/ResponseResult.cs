@@ -29,8 +29,23 @@ public class ResponseResult<TEntity>
     /// </summary>
     public string? ErrorMessage { get; init; }
 
-    #region Static Methods
+    #region Implicit
 
+    public static implicit operator ResponseResult<TEntity>(TEntity? data)
+    {
+        return ResponseResult.Success(data);
+    }
+
+    public static implicit operator ResponseResult<TEntity>((TEntity? Data, string? Message) tuple)
+    {
+        return ResponseResult.Success(tuple.Data, tuple.Message);
+    }
+
+    #endregion
+}
+
+public static class ResponseResult
+{
     public static ResponseResult<T> Success<T>(T? data, string? message = null)
     {
         return new()
@@ -62,20 +77,4 @@ public class ResponseResult<TEntity>
             ErrorMessage = errorMessage ?? code.ToDescription()
         };
     }
-
-    #endregion
-
-    #region Implicit
-
-    public static implicit operator ResponseResult<TEntity>(TEntity? data)
-    {
-        return Success(data);
-    }
-
-    public static implicit operator ResponseResult<TEntity>((TEntity? Data, string? Message) tuple)
-    {
-        return Success(tuple.Data, tuple.Message);
-    }
-
-    #endregion
 }

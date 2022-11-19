@@ -24,7 +24,7 @@ public class BasicExceptionMiddleware
         catch (BasicException e)
         {
 #if DEBUG
-            var result = ResponseResult<object>.Error(e.ErrorInfos, e.Code, e.Message, e.StackTrace);
+            var result = ResponseResult.Error(e.ErrorInfos, e.Code, e.Message, e.StackTrace);
 #else
             var result = ResponseEmptyResult.Error(e.Code, e.Message);
 #endif
@@ -43,7 +43,7 @@ public class BasicExceptionMiddleware
         {
             var code = ResponseCode.Error;
 #if DEBUG
-            var result = ResponseResult<object>.Error<object>(null, ResponseCode.Error, e.Message, e.StackTrace);
+            var result = ResponseResult.Error<object>(null, ResponseCode.Error, e.Message, e.StackTrace);
 #else
             var result = ResponseEmptyResult.Error(code);
 #endif

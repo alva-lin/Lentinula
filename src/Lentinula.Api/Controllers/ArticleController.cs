@@ -59,6 +59,10 @@ public class ArticleController : BasicController
     public async Task<ResponseResult<ArticleDto>> Get(long id)
     {
         var article = await _articleService.Get(id);
+        if (article == null)
+        {
+            return ResponseResult.Fail<ArticleDto>(null, ResponseCode.EntityNotFound);
+        }
         return article;
     }
 

@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using Lentinula.Core.Aggregates.Articles.Dto
-@using Lentinula.Utils.Common.Response
-@inject IHttpClientFactory HttpClientFactory
+@using Lentinula.Blazor.HttpClients
+@inject ArticleApiClient ArticleApiClient
 
 <div class="px-6" >
     @if (articles != null && articles.Count > 0)
@@ -22,24 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        articles = await GetArticlesAsync(pageIndex, pageSize);
-    }
-
-    protected async Task<List<ArticleInfoDto>?> GetArticlesAsync(uint pageIndex, uint pageSize)
-    {
-        // TODO 类型化 HttpClient
-        var http = HttpClientFactory.CreateClient("Lentinula.Api");
-        var query = new Dictionary<string, string>()
-        {
-            ["pageIndex"] = pageIndex.ToString(),
-            ["pageSize"] = pageSize.ToString()
-        };
-        var response = await http.GetFromJsonAsync<ResponseListResult<ArticleInfoDto>>("Article");
-        if (response is not null && response.Code == ResponseCode.Success)
-        {
-            return response.Data;
-        }
-        return null;
+        articles = await ArticleApiClient.GetArticlesAsync(pageIndex, pageSize);
     }
 
 }

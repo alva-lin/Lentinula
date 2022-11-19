@@ -43,7 +43,7 @@ _UpgradeReport_Files/
 **/.idea/**/modules.xml
 
 
-src/*/appsettings.*.json
+src/**/appsettings.*.json
 
 # Swagger
 src/*/*.xml

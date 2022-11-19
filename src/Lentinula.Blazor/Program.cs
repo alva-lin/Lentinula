@@ -10,7 +10,9 @@ var configuration = builder.Configuration;
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-// builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddHttpClientFromConfig(configuration);
+builder.Logging.AddConfiguration(configuration.GetSection("Logging"));
+
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClients(configuration);
 
 await builder.Build().RunAsync();
