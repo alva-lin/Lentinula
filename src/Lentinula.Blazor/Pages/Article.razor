@@ -1,0 +1,36 @@
+﻿@page "/Article/{Id:long}"
+@using Lentinula.Core.Aggregates.Articles.Dto
+@using Lentinula.Blazor.HttpClients
+@inject ArticleApiClient ArticleApiClient
+
+@if (article is {})
+{
+    <div class="text-4xl" >@article.Title</div>
+}
+else
+{
+    <div class="text-danger text-2xl text-center mt-4">找不到指定的文章，稍后跳转回首页</div>
+}
+
+@code {
+
+    [Parameter]
+    public long Id { get; set; }
+
+    private ArticleDto? article;
+
+    protected override async Task OnInitializedAsync()
+    {
+        article = await ArticleApiClient.GetArticleAsync(Id);
+
+        if (article == null)
+        {
+            await Task.Run(async () =>
+            {
+                await Task.Delay(3000);
+                Navigation.NavigateTo("/");
+            });
+        }
+    }
+
+}

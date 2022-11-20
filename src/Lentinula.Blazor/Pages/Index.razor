@@ -3,26 +3,67 @@
 @using Lentinula.Blazor.HttpClients
 @inject ArticleApiClient ArticleApiClient
 
-<div class="px-6" >
-    @if (articles != null && articles.Count > 0)
-    {
-        @foreach (var article in articles)
+<div class="px-2" >
+    <div>
+        @if (articles is { Count: > 0 })
         {
-            <div>@article.Title</div>
+            <div class="grid grid-cols-1" >
+                @foreach (var article in articles)
+                {
+                    <div class="active:bg-slate-100 cursor-pointer hover:bg-slate-50 mx-2 pt-4"
+                         @onclick="@(_ => ClickArticle(article))" >
+                        <div class="border-b-2 border-slate-200 border-solid pt-2 px-4" >
+                            <div class="text-2xl" >@article.Title</div>
+                            <div class="float-right text-slate-400 text-sm" >
+                                <span>@article.CreationTime.ToString("yyyy年MM月")</span>
+                            </div>
+                            <div class="clear-both" ></div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (hasNext)
+            {
+                <div class="active:bg-slate-100 hover:bg-slate-50" >
+                    <button class="h-16 w-full"
+                            @onclick="GetNextPageAsync" >
+                        加载更多
+                    </button>
+                </div>
+            }
         }
-    }
+    </div>
 </div>
 
 @code {
+    private readonly List<ArticleInfoDto> articles = new();
+    private bool hasNext = true;
 
-    private List<ArticleInfoDto>? articles;
-
-    private uint pageIndex = 1;
-    private uint pageSize = 10;
+    public uint pageIndex = 1;
+    public uint pageSize = 10;
 
     protected override async Task OnInitializedAsync()
     {
-        articles = await ArticleApiClient.GetArticlesAsync(pageIndex, pageSize);
+        await GetNextPageAsync();
+    }
+
+    private async Task GetNextPageAsync()
+    {
+        var data = await ArticleApiClient.GetArticlesAsync(pageIndex, pageSize);
+        if (data.Count < pageSize)
+        {
+            hasNext = false;
+        }
+        else
+        {
+            pageIndex++;
+        }
+        articles.AddRange(data);
+    }
+
+    private void ClickArticle(ArticleInfoDto articleInfoDto)
+    {
+        Navigation.NavigateTo($"Article/{articleInfoDto.Id}");
     }
 
 }

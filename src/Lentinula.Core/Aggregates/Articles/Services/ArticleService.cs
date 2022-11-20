@@ -21,7 +21,7 @@ public class ArticleService : IArticleService
     public async Task<List<ArticleInfoDto>> GetList(uint pageIndex, uint pageSize, CancellationToken cancellationToken = default)
     {
         var skip = (pageIndex - 1) * pageSize;
-        var articles = await _dbContext.Articles.Skip((int)skip).Take((int)pageSize).ToListAsync(cancellationToken);
+        var articles = await _dbContext.Articles.OrderByDescending(article => article.CreationTime).Skip((int)skip).Take((int)pageSize).ToListAsync(cancellationToken);
         return _mapper.Map<List<ArticleInfoDto>>(articles);
     }
 
