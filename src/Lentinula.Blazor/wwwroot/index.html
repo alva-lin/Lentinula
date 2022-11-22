@@ -6,7 +6,6 @@
     <title >Lentinula.Blazor.Wasm</title >
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
-    <script src="./pangu/pangu.min.js"></script>
 
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="Lentinula.Blazor.Wasm.styles.css" rel="stylesheet" /> -->
@@ -23,6 +22,9 @@
 <!--suppress HtmlUnknownTarget -->
 <script src="_framework/blazor.webassembly.js" ></script >
 <!--suppress JSUnresolvedFunction -->
+<script src="js/libs/pangu.min.js"></script>
+<script src="js/libs/purify.min.js"></script>
+<script src="js/libs/marked.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // listen to any DOM change and automatically perform spacing via MutationObserver()
