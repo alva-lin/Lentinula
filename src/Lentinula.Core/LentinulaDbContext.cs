@@ -49,16 +49,19 @@ public sealed class LentinulaDbContext : DbContext
 
     private static void SetPartialUpdate(object? sender, EntityEntryEventArgs e)
     {
-        foreach (var propertyEntry in e.Entry.Properties.Where(pEntry => pEntry.IsModified))
+        if (e.Entry.State == EntityState.Modified)
         {
-            if (Equals(propertyEntry.OriginalValue, propertyEntry.CurrentValue))
+            foreach (var propertyEntry in e.Entry.Properties.Where(pEntry => pEntry.IsModified))
             {
-                propertyEntry.IsModified = false;
+                if (Equals(propertyEntry.OriginalValue, propertyEntry.CurrentValue))
+                {
+                    propertyEntry.IsModified = false;
+                }
             }
-        }
-        if (e.Entry.Properties.Count(pEntry => pEntry.IsModified) == 0)
-        {
-            e.Entry.State = EntityState.Unchanged;
+            if (e.Entry.Properties.Count(pEntry => pEntry.IsModified) == 0)
+            {
+                e.Entry.State = EntityState.Unchanged;
+            }
         }
     }
 

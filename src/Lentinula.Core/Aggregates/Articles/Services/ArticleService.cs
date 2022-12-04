@@ -84,7 +84,7 @@ public class ArticleService : IArticleService
 
     public async Task Delete(long[] ids)
     {
-        var articles = await _dbContext.Articles.Where(article => ids.Contains(article.Id)).ToListAsync();
+        var articles = await _dbContext.Articles.IgnoreQueryFilters().Where(article => ids.Contains(article.Id)).ToListAsync();
         _dbContext.Articles.RemoveRange(articles);
         await _dbContext.SaveChangesAsync();
     }
