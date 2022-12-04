@@ -52,7 +52,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseBasicException();
 app.UseCors();
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseRouting();
