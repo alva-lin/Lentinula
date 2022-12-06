@@ -24,4 +24,9 @@ public class ArticleInfoDto
     ///     创建时间
     /// </summary>
     public DateTime CreationTime { get; set; }
+
+    /// <summary>
+    ///     修改时间
+    /// </summary>
+    public DateTime? ModifiedTime { get; set; } = null;
 }
