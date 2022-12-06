@@ -2,7 +2,7 @@
  * RegisterDto
  */
 export interface RegisterModel {
-  account:  string;
+  account: string;
   nickName: string;
   password: string;
 }

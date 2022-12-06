@@ -6,7 +6,7 @@ describe('LogInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       LogInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

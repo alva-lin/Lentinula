@@ -1,0 +1,48 @@
+<div class="bg">
+  <div class="container">
+    <div class="header">
+      <div class="logo">Lentinula</div>
+    </div>
+    <div class="content">
+      <div class="form">
+        <nz-input-group [nzPrefix]="inputAccountPrefixTpl" [nzSuffix]="inputAccountSuffixTpl">
+          <input #account nz-input placeholder="输入账户名" type="text" />
+        </nz-input-group>
+        <nz-input-group [nzPrefix]="inputPasswordPrefixTpl" [nzSuffix]="inputPasswordSuffixTpl">
+          <input #password [type]="pwdVisable ? 'text' : 'password'" nz-input placeholder="输入密码" />
+        </nz-input-group>
+        <button (click)="login(account.value, password.value)" nz-button nzBlock nzType="primary">登录</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://beian.miit.gov.cn/">{{beian}}</a>
+  </div>
+</div>
+
+
+<ng-template #inputAccountPrefixTpl>
+  <span nz-icon nzTheme="outline" nzType="user"></span>
+</ng-template>
+<ng-template #inputAccountSuffixTpl>
+  <span
+    (click)="account.value = ''"
+    *ngIf="account.value !== ''"
+    nz-icon
+    nzType="close-circle"
+  ></span>
+</ng-template>
+
+<ng-template #inputPasswordPrefixTpl>
+  <span nz-icon nzTheme="outline" nzType="lock"></span>
+</ng-template>
+<ng-template #inputPasswordSuffixTpl>
+  <span
+    (click)="password.value = ''"
+    *ngIf="password.value !== ''"
+    nz-icon
+    nzType="close-circle"
+  ></span>
+  <span (click)="pwdVisable = !pwdVisable" [nzType]="pwdVisable ? 'eye' : 'eye-invisible'" nz-icon></span>
+</ng-template>

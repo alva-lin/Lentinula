@@ -1,10 +1,5 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor, HttpResponse
-} from '@angular/common/http';
 import { finalize, Observable, tap } from 'rxjs';
 
 @Injectable()
@@ -19,7 +14,7 @@ export class LogInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         tap({
-          next : (event) => {
+          next: (event) => {
             ok = true
           },
           error: (error) => {

@@ -1,10 +1,5 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor, HttpResponse
-} from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { ResponseResult } from "../models/ResponseResult";
 
@@ -25,8 +20,9 @@ export class WrapperInterceptor implements HttpInterceptor {
           const data = event.body as ResponseResult<any>;
 
           if (data.code !== 0) {
-            const msg = `request failed: [${ data.code }] ${ data.message } ${ data.errorMessage }`;
+            const msg = `request failed: [${ data.code }] ${ data.message }`;
             console.error(msg)
+            throw new Error(msg);
           }
 
           if (data.data instanceof Boolean) {

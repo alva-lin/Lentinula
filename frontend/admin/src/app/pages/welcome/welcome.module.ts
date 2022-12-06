@@ -10,4 +10,5 @@ import { WelcomeComponent } from './welcome.component';
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
 })
-export class WelcomeModule { }
+export class WelcomeModule {
+}

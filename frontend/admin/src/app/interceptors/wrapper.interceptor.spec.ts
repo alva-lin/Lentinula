@@ -6,7 +6,7 @@ describe('WrapperInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       WrapperInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

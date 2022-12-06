@@ -2,6 +2,6 @@
  * LoginDto
  */
 export interface LoginModel {
-  account:  string;
+  account: string;
   password: string;
 }

@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   // apiUrl: "http://localhost:39001"
   apiUrl: "api",
+  beian: '测ICP备xxxxxxxxxx号',
 };
 
 /*
