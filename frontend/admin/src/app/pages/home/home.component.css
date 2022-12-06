@@ -1,0 +1,90 @@
+.bg {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(241 245 249);
+}
+
+/**
+  顶部区域
+ */
+.header {
+  flex: none;
+
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-container {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  float: left;
+}
+
+.logo {
+  margin: auto;
+  font-size: 2rem;
+  user-select: none;
+  color: rgb(56 189 248);
+}
+
+.header-menu {
+  line-height: 4rem;
+  flex: 1;
+}
+
+
+/**
+  主体部分
+ */
+.main {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 4rem);
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+  侧边栏
+ */
+.sider {
+  width: 200px;
+  height: 100%;
+  flex: none;
+  overflow: auto;
+}
+
+.sider-menu {
+  height: 100%;
+}
+
+/**
+  中心部分
+ */
+.content-container {
+  flex: 1;
+  height: 100%;
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb {
+  margin: 1rem 0;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  background: white;
+
+  padding: 1rem;
+}
