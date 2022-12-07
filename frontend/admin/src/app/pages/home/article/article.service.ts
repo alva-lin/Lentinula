@@ -1,14 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
-import { ArticleDto } from "../models/article/articleDto";
-import { ArticleInfoDto } from "../models/article/articleInfoDto";
-import { ArticleQuery } from "../models/article/articleQuery";
+import { ArticleDto, ArticleInfoDto, ArticleQuery } from "src/app/models/Models";
+import { environment } from "../../../../environments/environment";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ArticleService {
 
   baseUrl = environment.apiUrl;

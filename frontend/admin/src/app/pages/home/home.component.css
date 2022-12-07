@@ -19,6 +19,7 @@
   display: flex;
 
   background: rgb(255 255 255);
+  border-bottom: solid 1px rgb(56 189 248);
 }
 
 .logo-container {
@@ -26,6 +27,7 @@
   height: 100%;
   display: flex;
   float: left;
+  /*border-right: solid 1px rgb(56 189 248);*/
 }
 
 .logo {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
+import { AuthService } from 'src/app/services/Services';
 import { environment } from "../../../environments/environment";
-import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',

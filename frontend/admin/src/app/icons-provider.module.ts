@@ -7,7 +7,10 @@ import {
   LockOutline,
   UserOutline,
   DashboardOutline,
-  FileTextOutline
+  FileTextOutline,
+  ArrowLeftOutline,
+  DeleteOutline,
+  PlusOutline
 } from '@ant-design/icons-angular/icons';
 import { NZ_ICONS, NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -18,7 +21,10 @@ const icons = [
   EyeOutline,
   EyeInvisibleOutline,
   DashboardOutline,
-  FileTextOutline
+  FileTextOutline,
+  ArrowLeftOutline,
+  DeleteOutline,
+  PlusOutline
 ];
 
 @NgModule({

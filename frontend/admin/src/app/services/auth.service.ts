@@ -2,9 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from "rxjs";
 import { environment } from "../../environments/environment";
-import { AuthInfo } from "../models/auth/AuthInfo";
-import { LoginModel } from "../models/auth/LoginModel";
-import { LocalStorageService } from "./local-storage.service";
+import { AuthInfo, LoginModel } from "../models/Models";
+import { LocalStorageService } from "./Services";
 
 @Injectable({
   providedIn: 'root'

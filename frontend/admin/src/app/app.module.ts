@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { httpInterceptorProviders } from "./interceptors/httpInterceptorProviders";
 import { LoginComponent } from "./pages/login/login.component";
+import { AuthService, LocalStorageService } from "./services/Services";
 
 registerLocaleData(zh);
 
@@ -40,7 +41,9 @@ registerLocaleData(zh);
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    AuthService,
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })
