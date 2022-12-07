@@ -7,6 +7,8 @@ import { RegisterModel } from "./auth/RegisterModel";
 import { ArticleQuery } from "./article/articleQuery";
 import { ArticleInfoDto } from "./article/articleInfoDto";
 import { ArticleDto } from "./article/articleDto";
+import { ArticleEditDto } from "./article/articleEditDto";
+import { ArticleDeleteInfoDto } from "./article/articleDeleteInfoDto";
 
 export {
   ResponseResult,
@@ -15,5 +17,7 @@ export {
   RegisterModel,
   ArticleQuery,
   ArticleInfoDto,
-  ArticleDto
+  ArticleDto,
+  ArticleEditDto,
+  ArticleDeleteInfoDto
 }

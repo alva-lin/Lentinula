@@ -13,6 +13,11 @@ public class ArticleRecycleBinDto
     public string Title { get; set; } = null!;
 
     /// <summary>
+    /// 创建时间
+    /// </summary>
+    public DateTime CreationTime { get; set; }
+
+    /// <summary>
     /// 删除时间
     /// </summary>
     public DateTime DeletedTime { get; set; }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { ArticleDto } from "../../../../models/article/articleDto";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { ArticleDto, ArticleEditDto } from 'src/app/models/Models';
 import { ArticleService } from "../article.service";
 
 @Component({
@@ -12,8 +13,11 @@ export class ArticleEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private articleService: ArticleService
-  ) { }
+    private router: Router,
+    private articleService: ArticleService,
+    private message: NzMessageService
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -28,17 +32,55 @@ export class ArticleEditComponent implements OnInit {
     })
   }
 
-  mode : '新增' | '编辑' = '编辑';
+  mode: '新增' | '编辑' = '编辑';
   id?: number;
   article?: ArticleDto;
-  isLoading = false;
+  loading = false;
 
   getArticle() {
-    if (this.id === undefined || this.isLoading) return;
-    this.isLoading = true;
+    if (this.id === undefined || this.loading) return;
+    this.loading = true;
     this.articleService.GetOne(this.id).subscribe(article => {
       this.article = article;
-      this.isLoading = false;
+
+      this.title = article.title;
+      this.summary = article.summary || "";
+      this.content = article.content || "";
+
+      this.loading = false;
+    })
+  }
+
+  title = "";
+  summary = "";
+  content = "";
+
+  saveArticle() {
+    if (this.loading) return;
+
+    if (this.title === this.article?.title &&
+      this.summary === this.article?.summary &&
+      this.content === this.article?.content) {
+      this.message.info("没有改动，无需更新")
+      return;
+    }
+
+    this.loading = true;
+    this.id = this.id || 0;
+    const dto: ArticleEditDto = {
+      id: this.id,
+      title: this.title,
+      summary: this.summary,
+      content: this.content
+    };
+    this.articleService.Save(dto).subscribe(success => {
+      if (success) {
+        this.message.success("保存成功")
+        this.router.navigate(['/', 'home', 'article']).then();
+      } else {
+        this.message.error("保存失败")
+      }
+      this.loading = false;
     })
   }
 }
