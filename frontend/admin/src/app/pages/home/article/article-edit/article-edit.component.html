@@ -1,1 +1,20 @@
-<p>article-edit works!</p>
+<div class="container">
+  <nz-page-header class="page-header" nzBackIcon="arrow-left">
+    <nz-page-header-title>文章{{mode}}</nz-page-header-title>
+    <nz-page-header-extra>
+      <nz-space>
+      </nz-space>
+    </nz-page-header-extra>
+  </nz-page-header>
+
+
+  <div>
+    {{article?.title}}
+  </div>
+  <div>
+    {{article?.summary}}
+  </div>
+  <div>
+    {{article?.content}}
+  </div>
+</div>

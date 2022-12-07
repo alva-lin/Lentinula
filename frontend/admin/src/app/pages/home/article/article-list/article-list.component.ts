@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { ArticleInfoDto } from "../../../../models/article/articleInfoDto";
 import { ArticleQuery } from "../../../../models/article/articleQuery";
@@ -13,7 +14,8 @@ export class ArticleListComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class ArticleListComponent implements OnInit {
     this.messageService.success("添加文章")
   }
   editArticle(id: number) {
-    this.messageService.success("编辑文章")
+    this.router.navigate(['/', 'home', 'article','edit', id]).then();
   }
   removeArticle(id: number) {
     this.messageService.success("删除文章")
