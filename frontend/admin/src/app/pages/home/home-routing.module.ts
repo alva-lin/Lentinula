@@ -8,7 +8,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', component: ConsoleComponent }
+      { path: 'console', component: ConsoleComponent },
+      { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.ArticleModule) },
+      { path: '', pathMatch: "full", redirectTo: 'console' },
+      { path: '**', redirectTo: '' }
     ]
   }
 ];
@@ -17,4 +20,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {
+}

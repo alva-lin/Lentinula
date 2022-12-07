@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from "rxjs";
 import { environment } from "../../environments/environment";
+import { AuthInfo } from "../models/auth/AuthInfo";
 import { LoginModel } from "../models/auth/LoginModel";
 import { LocalStorageService } from "./local-storage.service";
 
@@ -19,6 +20,11 @@ export class AuthService {
   ) {
   }
 
+  IsLogged(): boolean {
+    const authInfo = this.localStorageService.getItem<AuthInfo>(this.tokenKey);
+    return authInfo !== null && new Date(authInfo.ExpireTime) > new Date();
+  }
+
   Login(model: LoginModel): Observable<boolean> {
     const url = `${ this.baseUrl }/User/Login`
     return this.http.post<string>(url, model).pipe(
@@ -27,15 +33,9 @@ export class AuthService {
       }),
       map((token: string) => {
         if (token.length > 0) {
-          const expireTime = new Date();
-          expireTime.setDate(expireTime.getDate() + 3);
-          const data = {
-            token: token,
-            expireTime: expireTime
-          }
-          this.localStorageService.setItem(this.tokenKey, data);
+          this.localStorageService.setItem(this.tokenKey, new AuthInfo(token));
         }
-        return token.length > 0;
+        return this.IsLogged();
       })
     )
   }

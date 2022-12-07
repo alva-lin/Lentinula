@@ -12,8 +12,18 @@ export class LocalStorageService {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  public getItem(key: string): any {
-    return JSON.parse(localStorage.getItem(key) || '');
+  public getItem<T>(key: string): T | null {
+    const item = localStorage.getItem(key);
+    if (item === null) return null;
+    return JSON.parse(item) as T;
+  }
+
+  public getRequiredItem<T>(key: string): T {
+    const item = this.getItem<T>(key);
+    if (item === null) {
+      throw new Error(`local storage service: key=${key} not existed!`);
+    }
+    return item;
   }
 
   public removeItem(key: string): void {
