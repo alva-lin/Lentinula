@@ -1,8 +1,17 @@
 <div class="bg">
   <div class="header">
-    <div class="logo-container">
-      <span class="logo"> Lentinula</span>
+    <div class="logo-container" *ngIf="isProduction else testLogoTpl">
+      <div class="logo">Lentinula</div>
     </div>
+    <ng-template #testLogoTpl>
+      <nz-ribbon nzText="测">
+        <div class="logo-container">
+          <div class="logo">
+            <span>Lentinula</span>
+          </div>
+        </div>
+      </nz-ribbon>
+    </ng-template>
     <div class="header-banner">
       <div class="tools"></div>
       <div class="right">

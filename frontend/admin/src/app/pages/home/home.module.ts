@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NzAlertModule } from "ng-zorro-antd/alert";
 import { NzAvatarModule } from "ng-zorro-antd/avatar";
+import { NzBadgeModule } from "ng-zorro-antd/badge";
 import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
@@ -27,7 +29,9 @@ import { HomeComponent } from './home.component';
     NzIconModule,
     NzAvatarModule,
     NzButtonModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzBadgeModule,
+    NzAlertModule
   ]
 })
 export class HomeModule {

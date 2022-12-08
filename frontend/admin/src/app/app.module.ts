@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzBadgeModule } from "ng-zorro-antd/badge";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { NzInputModule } from "ng-zorro-antd/input";
@@ -26,19 +27,20 @@ registerLocaleData(zh);
     AppComponent,
     LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzInputModule,
-    NzButtonModule,
-    NzMessageModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        IconsProviderModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzInputModule,
+        NzButtonModule,
+        NzMessageModule,
+        NzBadgeModule
+    ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
     httpInterceptorProviders,

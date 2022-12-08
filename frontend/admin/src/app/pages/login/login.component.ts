@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   callback = "";
 
+  isProduction = environment.production;
+
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
