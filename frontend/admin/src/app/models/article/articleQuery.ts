@@ -1,4 +1,4 @@
 ﻿export interface ArticleQuery {
-  pageIndex: number;
+  pageNumber: number;
   pageSize: number;
 }

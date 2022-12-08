@@ -9,9 +9,11 @@ import { ArticleInfoDto } from "./article/articleInfoDto";
 import { ArticleDto } from "./article/articleDto";
 import { ArticleEditDto } from "./article/articleEditDto";
 import { ArticleDeleteInfoDto } from "./article/articleDeleteInfoDto";
+import { PaginatedList } from "./PaginatedList";
 
 export {
   ResponseResult,
+  PaginatedList,
   AuthInfo,
   LoginModel,
   RegisterModel,

@@ -11,7 +11,7 @@
     <nz-table
       #basicTable
       [nzData]="articles"
-      nzFrontPagination="false"
+      [nzFrontPagination]="false"
       [nzLoading]="loading"
       [nzTotal]="total"
       [nzPageSize]="pageSize"
@@ -19,6 +19,7 @@
       [nzNoResult]="emptyTpl"
       nzHideOnSinglePage="true"
       nzSimple
+      (nzQueryParams)="onQueryParamsChange($event)"
     >
       <thead>
       <tr>

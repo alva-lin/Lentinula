@@ -1,7 +1,14 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { ArticleDeleteInfoDto, ArticleDto, ArticleEditDto, ArticleInfoDto, ArticleQuery } from "src/app/models/Models";
+import {
+  ArticleDeleteInfoDto,
+  ArticleDto,
+  ArticleEditDto,
+  ArticleInfoDto,
+  ArticleQuery,
+  PaginatedList
+} from "src/app/models/Models";
 import { environment } from "../../../../environments/environment";
 
 @Injectable()
@@ -14,14 +21,14 @@ export class ArticleService {
   ) {
   }
 
-  Get(query: ArticleQuery): Observable<ArticleInfoDto[]> {
+  Get(query: ArticleQuery): Observable<PaginatedList<ArticleInfoDto>> {
     const url = `${ this.baseUrl }/Article`;
-    return this.http.get<ArticleInfoDto[]>(url)
+    return this.http.get<PaginatedList<ArticleInfoDto>>(url, { params: { ...query } })
   }
 
-  GetListInRecycleBin(query: ArticleQuery): Observable<ArticleDeleteInfoDto[]> {
+  GetListInRecycleBin(query: ArticleQuery): Observable<PaginatedList<ArticleDeleteInfoDto>> {
     const url = `${ this.baseUrl }/Article/GetListInRecycleBin`;
-    return this.http.get<ArticleDeleteInfoDto[]>(url)
+    return this.http.get<PaginatedList<ArticleDeleteInfoDto>>(url, { params: { ...query } })
   }
 
   GetOne(id: number): Observable<ArticleDto> {

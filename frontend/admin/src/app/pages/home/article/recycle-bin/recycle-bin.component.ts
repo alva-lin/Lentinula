@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { ArticleDeleteInfoDto } from "../../../../models/article/articleDeleteInfoDto";
 import { ArticleQuery } from "../../../../models/article/articleQuery";
 import { ArticleService } from "../article.service";
@@ -14,8 +14,7 @@ export class RecycleBinComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private message: NzMessageService,
-    private router: Router
+    private message: NzMessageService
   ) {
   }
 
@@ -24,7 +23,7 @@ export class RecycleBinComponent implements OnInit {
   }
 
   articles: ArticleDeleteInfoDto[] = [];
-  pageSize = 10;
+  pageSize = 5;
   pageIndex = 1;
   total = 18;
   loading = false;
@@ -34,12 +33,23 @@ export class RecycleBinComponent implements OnInit {
     this.loading = true;
     const query: ArticleQuery = {
       pageSize: this.pageSize,
-      pageIndex: this.pageIndex
+      pageNumber: this.pageIndex
     }
-    this.articleService.GetListInRecycleBin(query).subscribe(articles => {
-      this.articles = articles
+    this.articleService.GetListInRecycleBin(query).subscribe(paginatedList => {
+      this.articles = paginatedList.data
+      this.total = paginatedList.totalCount
+      this.pageIndex = paginatedList.currentPage
+      this.pageSize = paginatedList.pageSize
+
       this.loading = false;
     })
+  }
+
+  onQueryParamsChange(params: NzTableQueryParams): void {
+    const { pageSize, pageIndex } = params;
+    this.pageSize = pageSize;
+    this.pageIndex = pageIndex;
+    this.getRemovedArticles();
   }
 
   restore(ids: number[]) {
@@ -69,5 +79,4 @@ export class RecycleBinComponent implements OnInit {
       }
     })
   }
-
 }
