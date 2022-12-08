@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+using Lentinula.Api.Common;
 using Lentinula.Core.Aggregates.Users.Dto;
 using Lentinula.Core.Options;
 using Lentinula.Utils.Common;
@@ -21,14 +22,20 @@ public class UserService : IUserService
 
     private readonly JwtOption _jwtOption;
 
-    public UserService(LentinulaDbContext dbContext, IOptions<JwtOption> jwtOption)
+    private readonly SystemOption _systemOption;
+
+    public UserService(LentinulaDbContext dbContext, IOptionsSnapshot<JwtOption> jwtOption, IOptionsSnapshot<SystemOption> systemOption)
     {
-        _dbContext = dbContext;
-        _jwtOption = jwtOption.Value;
+        _dbContext    = dbContext;
+        _jwtOption    = jwtOption.Value;
+        _systemOption = systemOption.Value;
     }
 
     public async Task<bool> Register(RegisterDto dto, CancellationToken cancellationToken = default)
     {
+        if (!_systemOption.EnableRegister)
+            throw new BasicException(ResponseCode.Fail, "无法注册新用户");
+        
         if (await _dbContext.Users.AnyAsync(user => user.Account == dto.Account, cancellationToken))
         {
             throw new BasicException(ResponseCode.Fail, "该账号已被注册");

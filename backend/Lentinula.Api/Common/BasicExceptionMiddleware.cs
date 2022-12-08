@@ -6,7 +6,7 @@ namespace Lentinula.Api.Common;
 public class BasicExceptionMiddleware
 {
     private readonly ILogger<BasicExceptionMiddleware> _logger;
-    private readonly RequestDelegate _next;
+    private readonly RequestDelegate                   _next;
 
     public BasicExceptionMiddleware(RequestDelegate next, ILogger<BasicExceptionMiddleware> logger)
     {
@@ -23,11 +23,10 @@ public class BasicExceptionMiddleware
         }
         catch (BasicException e)
         {
-#if DEBUG
-            var result = ResponseResult.Error(e.ErrorInfos, e.Code, e.Message, e.StackTrace);
-#else
-            var result = ResponseEmptyResult.Error(e.Code, e.Message);
-#endif
+            ResponseResult<dynamic> result = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ?
+                ResponseResult.Error(e.ErrorInfos, e.Code, e.Message, e.StackTrace) :
+                ResponseEmptyResult.Error(e.Code, e.Message);
+
             await context.Response.WriteAsJsonAsync(result, cancellationToken);
 
             _logger.LogError(e, "{Code} {Message} {Info}",
@@ -42,11 +41,11 @@ public class BasicExceptionMiddleware
         catch (Exception e)
         {
             var code = ResponseCode.Error;
-#if DEBUG
-            var result = ResponseResult.Error<object>(null, ResponseCode.Error, e.Message, e.StackTrace);
-#else
-            var result = ResponseEmptyResult.Error(code);
-#endif
+
+            ResponseResult<object> result = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ?
+                ResponseResult.Error<object>(VoidObject.Instance, code, e.Message, e.StackTrace) :
+                ResponseResult.Error<object>(VoidObject.Instance, code, e.Message);
+
             await context.Response.WriteAsJsonAsync(result, cancellationToken);
 
             _logger.LogError(e, "{Code} {Message} {Info}",

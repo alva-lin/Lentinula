@@ -35,11 +35,17 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.AddCorsSetting(configuration);
 builder.Services.AddJwtBearer(configuration);
 
+// 数据库上下文
 builder.Services.AddDbContext<LentinulaDbContext>(option =>
 {
     option.UseNpgsql(configuration.GetConnectionString("Lentinula"));
 });
+
+// 统一注册服务
 builder.Services.AddBasicServiceByLifeScope();
+
+// 添加系统配置
+builder.Services.AddSystemOption(configuration);
 
 var app = builder.Build();
 

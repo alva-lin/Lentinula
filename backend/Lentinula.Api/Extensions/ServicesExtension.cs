@@ -99,4 +99,11 @@ public static class ServicesExtension
 
         return services;
     }
+
+    public static IServiceCollection AddSystemOption(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<SystemOption>(configuration.GetSection(nameof(SystemOption)));
+
+        return services;
+    }
 }
