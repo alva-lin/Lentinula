@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   callback = "";
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private message: NzMessageService
@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
       return;
     this.loading = true;
     const messageId = this.message.loading('登录中...', { nzDuration: 0 }).messageId;
-    this.auth.Login({ account, password }).subscribe((success) => {
+    this.authService.Login({ account, password }).subscribe((success) => {
       this.loading = false;
       this.message.remove(messageId);
       if (success) {
         this.message.success("登录成功")
-        this.router.navigate([this.callback]).then();
+        this.router.navigate([this.authService.GetAndResetRedirectUrl()]).then();
       } else {
         this.message.error("登录失败")
       }

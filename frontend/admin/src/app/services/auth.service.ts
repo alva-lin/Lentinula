@@ -12,6 +12,7 @@ export class AuthService {
 
   baseUrl = environment.apiUrl;
   tokenKey = 'token';
+  redirectUrl = '';
 
   constructor(
     private http: HttpClient,
@@ -22,6 +23,12 @@ export class AuthService {
   IsLogged(): boolean {
     const authInfo = this.localStorageService.getItem<AuthInfo>(this.tokenKey);
     return authInfo !== null && new Date(authInfo.ExpireTime) > new Date();
+  }
+
+  GetAndResetRedirectUrl() : string {
+    const url = this.redirectUrl;
+    this.redirectUrl = "";
+    return url;
   }
 
   Login(model: LoginModel): Observable<boolean> {
