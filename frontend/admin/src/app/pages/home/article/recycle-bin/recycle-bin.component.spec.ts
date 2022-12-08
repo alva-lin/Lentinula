@@ -8,9 +8,9 @@ describe('RecycleBinComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecycleBinComponent ]
-    })
-    .compileComponents();
+        declarations: [RecycleBinComponent]
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(RecycleBinComponent);
     component = fixture.componentInstance;

@@ -11,6 +11,14 @@ import { ArticleService } from "../article.service";
 })
 export class ArticleEditComponent implements OnInit {
 
+  mode: '新增' | '编辑' = '编辑';
+  id?: number;
+  article?: ArticleDto;
+  loading = false;
+  title = "";
+  summary = "";
+  content = "";
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,11 +40,6 @@ export class ArticleEditComponent implements OnInit {
     })
   }
 
-  mode: '新增' | '编辑' = '编辑';
-  id?: number;
-  article?: ArticleDto;
-  loading = false;
-
   getArticle() {
     if (this.id === undefined || this.loading) return;
     this.loading = true;
@@ -50,10 +53,6 @@ export class ArticleEditComponent implements OnInit {
       this.loading = false;
     })
   }
-
-  title = "";
-  summary = "";
-  content = "";
 
   saveArticle() {
     if (this.loading) return;

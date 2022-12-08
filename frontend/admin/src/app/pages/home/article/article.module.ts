@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
@@ -11,10 +11,10 @@ import { NzPipesModule } from "ng-zorro-antd/pipes";
 import { NzPopconfirmModule } from "ng-zorro-antd/popconfirm";
 import { NzSpaceModule } from "ng-zorro-antd/space";
 import { NzTableModule } from "ng-zorro-antd/table";
+import { ArticleEditComponent } from './article-edit/article-edit.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 import { ArticleRoutingModule } from './article-routing.module';
-import { ArticleListComponent } from './article-list/article-list.component';
-import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { ArticleService } from "./article.service";
 import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
 
@@ -44,4 +44,5 @@ import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
     ArticleService
   ]
 })
-export class ArticleModule { }
+export class ArticleModule {
+}

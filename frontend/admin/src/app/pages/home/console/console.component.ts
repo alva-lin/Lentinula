@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./console.component.css']
 })
 export class ConsoleComponent implements OnInit {
-  numbers : number[];
+  numbers: number[];
 
   constructor() {
     this.numbers = Array(30).fill(0).map((x, i) => i);

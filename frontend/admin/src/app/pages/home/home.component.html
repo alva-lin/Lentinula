@@ -7,12 +7,13 @@
       <div class="tools"></div>
       <div class="right">
         <div class="avatar">
-          <button nz-button nzType="default" nzSize="large" nzShape="circle" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+          <button [nzDropdownMenu]="menu" nz-button nz-dropdown nzShape="circle" nzSize="large" nzTrigger="click"
+                  nzType="default">
             <span nz-icon nzType="user"></span>
           </button>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
-              <li nz-menu-item (click)="Logout()">退出系统</li>
+              <li (click)="Logout()" nz-menu-item>退出系统</li>
             </ul>
           </nz-dropdown-menu>
         </div>
@@ -21,13 +22,13 @@
   </div>
   <div class="main">
     <div class="sider">
-      <ul nz-menu nzMode="inline" class="sider-menu">
+      <ul class="sider-menu" nz-menu nzMode="inline">
         <li nz-menu-item nzMatchRouter>
-          <span nz-icon nzType="dashboard" nzTheme="outline"></span>
+          <span nz-icon nzTheme="outline" nzType="dashboard"></span>
           <span><a [routerLink]="['/', 'home', 'console']">控制台</a></span>
         </li>
         <li nz-menu-item nzMatchRouter>
-          <span nz-icon nzType="file-text" nzTheme="outline"></span>
+          <span nz-icon nzTheme="outline" nzType="file-text"></span>
           <span><a [routerLink]="['/', 'home', 'article']">文章管理</a></span>
         </li>
       </ul>

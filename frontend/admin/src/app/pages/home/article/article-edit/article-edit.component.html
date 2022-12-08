@@ -3,11 +3,11 @@
     <nz-page-header-title>文章{{mode}}</nz-page-header-title>
     <nz-page-header-extra>
       <nz-space>
-        <button *nzSpaceItem nz-button nzType="primary"
-                [disabled]="loading"
-                (click)="saveArticle()">
-          <span nz-icon
-                [nzType]="loading ? 'loading' : 'save' "></span>
+        <button (click)="saveArticle()" *nzSpaceItem [disabled]="loading"
+                nz-button
+                nzType="primary">
+          <span [nzType]="loading ? 'loading' : 'save' "
+                nz-icon></span>
           保存
         </button>
       </nz-space>
@@ -19,30 +19,30 @@
       <nz-empty nzNotFoundImage="simple"></nz-empty>
     </div>
   </ng-template>
-  <div class="edit-area" *ngIf="true else emptyTpl">
+  <div *ngIf="true else emptyTpl" class="edit-area">
     <nz-space nzDirection="vertical">
       <ng-container *nzSpaceItem>
-        <input type="text" nz-input nzSize="large"
+        <input [(ngModel)]="title" nz-input nzSize="large"
                placeholder="文章标题，不要超过60个字"
-               [(ngModel)]="title" />
+               type="text" />
       </ng-container>
       <ng-container *nzSpaceItem>
         <nz-input-group>
           <nz-textarea-count [nzMaxCharacterCount]="200">
-                  <textarea nz-input nzSize="large"
-                            placeholder="文章概要，不超过200字"
-                            [(ngModel)]="summary"
-                            [nzAutosize]="{ minRows: 2, maxRows: 4}"></textarea>
+                  <textarea [(ngModel)]="summary" [nzAutosize]="{ minRows: 2, maxRows: 4}"
+                            nz-input
+                            nzSize="large"
+                            placeholder="文章概要，不超过200字"></textarea>
           </nz-textarea-count>
         </nz-input-group>
       </ng-container>
       <ng-container *nzSpaceItem>
         <nz-input-group>
           <nz-textarea-count>
-                  <textarea nz-input nzSize="large"
-                            placeholder="文章内容"
-                            [(ngModel)]="content"
-                            [nzAutosize]="{ minRows: 6, maxRows: 10 }"></textarea>
+                  <textarea [(ngModel)]="content" [nzAutosize]="{ minRows: 6, maxRows: 10 }"
+                            nz-input
+                            nzSize="large"
+                            placeholder="文章内容"></textarea>
           </nz-textarea-count>
         </nz-input-group>
       </ng-container>

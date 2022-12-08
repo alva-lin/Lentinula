@@ -12,6 +12,13 @@ import { ArticleService } from "../article.service";
 })
 export class RecycleBinComponent implements OnInit {
 
+  articles: ArticleDeleteInfoDto[] = [];
+  pageSize: number;
+  pageNumber: number;
+  total = 0;
+  loading = false;
+  localStoragePrefix = "article_recycle_bin_";
+
   constructor(
     private articleService: ArticleService,
     private message: NzMessageService,
@@ -25,17 +32,10 @@ export class RecycleBinComponent implements OnInit {
     this.getRemovedArticles(this.pageNumber, this.pageSize);
   }
 
-  articles: ArticleDeleteInfoDto[] = [];
-  pageSize: number;
-  pageNumber: number;
-  total = 0;
-  loading = false;
-  localStoragePrefix = "article_recycle_bin_";
-
   getRemovedArticles(pageNumber: number, pageSize: number) {
     if (this.loading) return;
     this.loading = true;
-    this.articleService.GetListInRecycleBin({pageNumber, pageSize}).subscribe(paginatedList => {
+    this.articleService.GetListInRecycleBin({ pageNumber, pageSize }).subscribe(paginatedList => {
       this.articles = paginatedList.data
       this.total = paginatedList.totalCount
       this.changePageInfo(paginatedList.currentPage, paginatedList.pageSize)

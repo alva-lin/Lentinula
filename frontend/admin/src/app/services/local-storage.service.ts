@@ -21,7 +21,7 @@ export class LocalStorageService {
   public getRequiredItem<T>(key: string): T {
     const item = this.getItem<T>(key);
     if (item === null) {
-      throw new Error(`local storage service: key=${key} not existed!`);
+      throw new Error(`local storage service: key=${ key } not existed!`);
     }
     return item;
   }

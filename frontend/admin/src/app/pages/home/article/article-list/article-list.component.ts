@@ -13,6 +13,13 @@ import { ArticleService } from "../article.service";
 })
 export class ArticleListComponent implements OnInit {
 
+  articles: ArticleInfoDto[] = [];
+  pageSize: number;
+  pageNumber: number;
+  total = 0;
+  loading = false;
+  localStoragePrefix = "article_list_";
+
   constructor(
     private articleService: ArticleService,
     private message: NzMessageService,
@@ -27,14 +34,6 @@ export class ArticleListComponent implements OnInit {
   ngOnInit(): void {
     this.getArticles(this.pageNumber, this.pageSize);
   }
-
-  articles: ArticleInfoDto[] = [];
-  pageSize: number;
-  pageNumber: number;
-  total = 0;
-
-  loading = false;
-  localStoragePrefix = "article_list_";
 
   getArticles(pageNumber: number, pageSize: number) {
     if (this.loading) return;

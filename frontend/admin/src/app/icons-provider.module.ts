@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 
 import {
+  ArrowLeftOutline,
   CloseCircleOutline,
+  DashboardOutline,
+  DeleteOutline,
+  EditOutline,
   EyeInvisibleOutline,
   EyeOutline,
-  LockOutline,
-  UserOutline,
-  DashboardOutline,
   FileTextOutline,
-  ArrowLeftOutline,
-  DeleteOutline,
-  PlusOutline,
-  EditOutline,
-  SaveOutline,
   LoadingOutline,
-  UndoOutline
+  LockOutline,
+  PlusOutline,
+  SaveOutline,
+  UndoOutline,
+  UserOutline
 } from '@ant-design/icons-angular/icons';
 import { NZ_ICONS, NzIconModule } from 'ng-zorro-antd/icon';
 

@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'console', component: ConsoleComponent, title: `控制台 - ${baseTitle}` },
+      { path: 'console', component: ConsoleComponent, title: `控制台 - ${ baseTitle }` },
       { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.ArticleModule) },
       { path: '', pathMatch: "full", redirectTo: 'console' },
       { path: '**', redirectTo: '' }
