@@ -30,8 +30,9 @@ public class ArticleService : IArticleService
     public async Task<PaginatedList<ArticleRecycleBinDto>> GetListInRecycleBin(uint pageNumber, uint pageSize, CancellationToken cancellationToken)
     {
         var query = _dbContext.Articles
+            .IgnoreQueryFilters()
             .Where(article => article.IsDelete == true)
-            .OrderByDescending(article => article.CreationTime);
+            .OrderByDescending(article => article.DeletedTime);
         var articles = await query.ToPaginatedListAsync(pageNumber, pageSize, cancellationToken);
         return _mapper.Map<PaginatedList<ArticleRecycleBinDto>>(articles);
     }
