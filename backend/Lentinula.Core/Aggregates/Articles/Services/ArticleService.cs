@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 
 using Lentinula.Core.Aggregates.Articles.Dto;
+using Lentinula.Core.Extensions;
+using Lentinula.Utils.Common;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -18,22 +20,20 @@ public class ArticleService : IArticleService
         _mapper    = mapper;
     }
 
-    public async Task<List<ArticleInfoDto>> GetList(uint pageIndex, uint pageSize, CancellationToken cancellationToken = default)
+    public async Task<PaginatedList<ArticleInfoDto>> GetList(uint pageNumber, uint pageSize, CancellationToken cancellationToken = default)
     {
-        var skip = (pageIndex - 1) * pageSize;
-        var articles = await _dbContext.Articles.OrderByDescending(article => article.CreationTime).Skip((int)skip).Take((int)pageSize).ToListAsync(cancellationToken);
-        return _mapper.Map<List<ArticleInfoDto>>(articles);
+        var query    = _dbContext.Articles.OrderByDescending(article => article.CreationTime);
+        var articles = await query.ToPaginatedListAsync(pageNumber, pageSize, cancellationToken);
+        return _mapper.Map<PaginatedList<ArticleInfoDto>>(articles);
     }
 
-    public async Task<List<ArticleRecycleBinDto>> GetListInRecycleBin(uint pageIndex, uint pageSize, CancellationToken cancellationToken)
+    public async Task<PaginatedList<ArticleRecycleBinDto>> GetListInRecycleBin(uint pageNumber, uint pageSize, CancellationToken cancellationToken)
     {
-        var skip = (pageIndex - 1) * pageSize;
-        var articles = await _dbContext.Articles.IgnoreQueryFilters()
+        var query = _dbContext.Articles
             .Where(article => article.IsDelete == true)
-            .Skip((int)skip)
-            .Take((int)pageSize)
-            .ToListAsync(cancellationToken);
-        return _mapper.Map<List<ArticleRecycleBinDto>>(articles);
+            .OrderByDescending(article => article.CreationTime);
+        var articles = await query.ToPaginatedListAsync(pageNumber, pageSize, cancellationToken);
+        return _mapper.Map<PaginatedList<ArticleRecycleBinDto>>(articles);
     }
 
     public async Task<ArticleDto?> Get(long id)

@@ -1,5 +1,6 @@
 ﻿using Lentinula.Core.Aggregates.Articles.Dto;
 using Lentinula.Core.Common;
+using Lentinula.Utils.Common;
 
 namespace Lentinula.Core.Aggregates.Articles.Services;
 
@@ -8,20 +9,20 @@ public interface IArticleService : IBasicService
     /// <summary>
     ///     获取文章列表
     /// </summary>
-    /// <param name="pageIndex">页码</param>
+    /// <param name="pageNumber">页码</param>
     /// <param name="pageSize">每页的文章数量</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<List<ArticleInfoDto>> GetList(uint pageIndex, uint pageSize, CancellationToken cancellationToken);
+    Task<PaginatedList<ArticleInfoDto>> GetList(uint pageNumber, uint pageSize, CancellationToken cancellationToken);
     
     /// <summary>
     ///     获取回收站中的文章列表
     /// </summary>
-    /// <param name="pageIndex"></param>
+    /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<List<ArticleRecycleBinDto>> GetListInRecycleBin(uint pageIndex, uint pageSize, CancellationToken cancellationToken);
+    Task<PaginatedList<ArticleRecycleBinDto>> GetListInRecycleBin(uint pageNumber, uint pageSize, CancellationToken cancellationToken);
 
     /// <summary>
     ///     获取文章详情

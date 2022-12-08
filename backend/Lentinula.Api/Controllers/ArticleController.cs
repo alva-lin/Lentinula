@@ -25,28 +25,28 @@ public class ArticleController : BasicController
     /// <summary>
     ///     获取文章列表
     /// </summary>
-    /// <param name="pageIndex"></param>
+    /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [AllowAnonymous]
     [HttpGet]
-    public async Task<ResponseResult<List<ArticleInfoDto>>> Get(uint pageIndex = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
+    public async Task<ResponseResult<PaginatedList<ArticleInfoDto>>> Get(uint pageNumber = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
     {
-        return await _articleService.GetList(pageIndex, pageSize, cancellationToken);
+        return await _articleService.GetList(pageNumber, pageSize, cancellationToken);
     }
 
     /// <summary>
     ///     获取回收站中的文章列表
     /// </summary>
-    /// <param name="pageIndex"></param>
+    /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("[action]")]
-    public async Task<ResponseResult<List<ArticleRecycleBinDto>>> GetListInRecycleBin(uint pageIndex = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
+    public async Task<ResponseResult<PaginatedList<ArticleRecycleBinDto>>> GetListInRecycleBin(uint pageNumber = 1, uint pageSize = 10, CancellationToken cancellationToken = default)
     {
-        return await _articleService.GetListInRecycleBin(pageIndex, pageSize, cancellationToken);
+        return await _articleService.GetListInRecycleBin(pageNumber, pageSize, cancellationToken);
     }
 
     /// <summary>
