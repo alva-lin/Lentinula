@@ -55,11 +55,29 @@ public class PaginatedList<T>
         TotalPages  = (uint)Math.Ceiling(count / (double)pageSize);
     }
 
+    /// <summary>
+    /// 获取分页列表
+    /// </summary>
+    /// <remarks>
+    ///     如果查询的页码大于最后一页，那么会查询最后一页
+    /// </remarks>
+    /// <param name="source"></param>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
     public static PaginatedList<T> Create(IQueryable<T> source, uint pageNumber, uint pageSize)
     {
         var count = source.LongCount();
-        var items = source.Skip((int)((pageNumber - 1) * pageSize)).Take((int)pageSize).ToList();
 
-        return new(items, count, pageNumber, pageSize);
+        // 页码不能超过最后一页
+        var totalPages = (uint)Math.Ceiling(count / (double)pageSize);
+        pageNumber = Math.Min(pageNumber, totalPages);
+        
+        var take = Math.Max(pageSize, 1);
+        var skip = Math.Min((pageNumber - 1) * pageSize, 1);
+
+        var items = source.Skip((int)skip).Take((int)take).ToList();
+
+        return new(items, count, pageNumber, take);
     }
 }
