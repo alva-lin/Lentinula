@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
-import { ArticleDeleteInfoDto } from 'src/app/models/Models';
 import { LocalStorageService } from "src/app/services/local-storage.service";
 import { ArticleService } from "../article.service";
+import { ArticleDeleteInfoDto } from "../models/articleDeleteInfoDto";
 
 @Component({
   selector: 'app-recycle-bin',

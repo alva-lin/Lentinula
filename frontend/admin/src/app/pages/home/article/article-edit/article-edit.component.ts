@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
-import { ArticleDto, ArticleEditDto } from 'src/app/models/Models';
 import { ArticleService } from "../article.service";
+import { ArticleDto } from "../models/articleDto";
+import { ArticleEditDto } from "../models/articleEditDto";
 
 @Component({
   selector: 'app-article-edit',

@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
+import {
+  ArrowLeftOutline,
+  DashboardOutline,
+  DeleteOutline, EditOutline,
+  FileTextOutline, LoadingOutline,
+  PlusOutline, SaveOutline, UndoOutline
+} from "@ant-design/icons-angular/icons";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
 import { NzEmptyModule } from "ng-zorro-antd/empty";
@@ -19,6 +26,16 @@ import { ArticleService } from "./article.service";
 import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
 
 
+const icons = [
+  ArrowLeftOutline,
+  DeleteOutline,
+  PlusOutline,
+  EditOutline,
+  SaveOutline,
+  LoadingOutline,
+  UndoOutline
+];
+
 @NgModule({
   declarations: [
     ArticleListComponent,
@@ -32,7 +49,7 @@ import { RecycleBinComponent } from './recycle-bin/recycle-bin.component';
     NzSpaceModule,
     NzButtonModule,
     NzDescriptionsModule,
-    NzIconModule,
+    NzIconModule.forChild(icons),
     NzEmptyModule,
     NzTableModule,
     NzPipesModule,

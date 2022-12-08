@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {
+  DashboardOutline,
+  FileTextOutline, UserOutline
+} from "@ant-design/icons-angular/icons";
 import { NzAlertModule } from "ng-zorro-antd/alert";
 import { NzAvatarModule } from "ng-zorro-antd/avatar";
 import { NzBadgeModule } from "ng-zorro-antd/badge";
@@ -14,6 +18,11 @@ import { ConsoleComponent } from './console/console.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
+const icons = [
+  DashboardOutline,
+  FileTextOutline,
+  UserOutline
+];
 
 @NgModule({
   declarations: [
@@ -26,13 +35,13 @@ import { HomeComponent } from './home.component';
     NzLayoutModule,
     NzMenuModule,
     NzBreadCrumbModule,
-    NzIconModule,
     NzAvatarModule,
     NzButtonModule,
     NzDropDownModule,
     NzBadgeModule,
-    NzAlertModule
-  ]
+    NzAlertModule,
+    NzIconModule.forChild(icons)
+  ],
 })
 export class HomeModule {
 }

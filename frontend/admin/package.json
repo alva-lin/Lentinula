@@ -6,7 +6,9 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "produce": "ng build --configuration production --stats-json",
+    "bundle-report": "webpack-bundle-analyzer dist/admin/stats.json"
   },
   "private": true,
   "dependencies": {

@@ -2,14 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import {
-  ArticleDeleteInfoDto,
-  ArticleDto,
-  ArticleEditDto,
-  ArticleInfoDto,
-  ArticleQuery,
   PaginatedList
 } from "src/app/models/Models";
 import { environment } from "../../../../environments/environment";
+import { ArticleDeleteInfoDto } from "./models/articleDeleteInfoDto";
+import { ArticleDto } from "./models/articleDto";
+import { ArticleEditDto } from "./models/articleEditDto";
+import { ArticleInfoDto } from "./models/articleInfoDto";
+import { ArticleQuery } from "./models/articleQuery";
 
 @Injectable()
 export class ArticleService {
