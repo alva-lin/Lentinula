@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { NzTableQueryParams } from "ng-zorro-antd/table";
-import { Observable } from "rxjs";
-import { ArticleInfoDto } from "../../../../models/article/articleInfoDto";
-import { ArticleQuery } from "../../../../models/article/articleQuery";
+import { ArticleInfoDto } from 'src/app/models/Models';
+import { LocalStorageService } from "src/app/services/local-storage.service";
 import { ArticleService } from "../article.service";
 
 @Component({
@@ -17,32 +16,35 @@ export class ArticleListComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private localStorageService: LocalStorageService
   ) {
+    this.pageSize = this.localStorageService.getItem<number>(this.localStoragePrefix + "pageSize") || 5
+    this.pageNumber = this.localStorageService.getItem<number>(this.localStoragePrefix + "pageNumber") || 1
   }
 
   ngOnInit(): void {
-    this.getArticles();
+    this.getArticles(this.pageNumber, this.pageSize);
   }
 
   articles: ArticleInfoDto[] = [];
-  pageSize = 5;
-  pageIndex = 1;
-  total = 18;
-  loading = false;
+  pageSize: number;
+  pageNumber: number;
+  total = 0;
 
-  getArticles() {
+  loading = false;
+  localStoragePrefix = "article_list_";
+
+  getArticles(pageNumber: number, pageSize: number) {
     if (this.loading) return;
     this.loading = true;
-    const query: ArticleQuery = {
-      pageSize: this.pageSize,
-      pageNumber: this.pageIndex
-    }
-    this.articleService.Get(query).subscribe(paginatedList => {
+
+    this.articleService.Get({ pageNumber, pageSize }).subscribe(paginatedList => {
       this.articles = paginatedList.data
       this.total = paginatedList.totalCount
-      this.pageIndex = paginatedList.currentPage
-      this.pageSize = paginatedList.pageSize
+
+      this.changePageInfo(paginatedList.currentPage, paginatedList.pageSize)
 
       this.loading = false;
     });
@@ -50,21 +52,19 @@ export class ArticleListComponent implements OnInit {
 
   onQueryParamsChange(params: NzTableQueryParams): void {
     const { pageSize, pageIndex } = params;
-    this.pageSize = pageSize;
-    this.pageIndex = pageIndex;
-    this.getArticles();
+    this.getArticles(pageIndex, pageSize);
   }
 
   addArticle() {
-    this.router.navigate(['/', 'home', 'article', 'add']).then();
+    this.router.navigate(['./', 'add'], { relativeTo: this.route }).then();
   }
 
   editArticle(id: number) {
-    this.router.navigate(['/', 'home', 'article', 'edit', id]).then();
+    this.router.navigate(['./', 'edit', id], { relativeTo: this.route }).then();
   }
 
   enterRecycleBin() {
-    this.router.navigate(['/', 'home', 'article', 'recycle-bin']).then();
+    this.router.navigate(['./', 'recycle-bin'], { relativeTo: this.route }).then();
   }
 
   remove(ids: number[]) {
@@ -74,10 +74,18 @@ export class ArticleListComponent implements OnInit {
       this.loading = false;
       if (success) {
         this.message.success("删除成功")
-        this.getArticles()
+        this.getArticles(this.pageNumber, this.pageSize)
       } else {
         this.message.error("删除失败")
       }
     })
+  }
+
+  private changePageInfo(pageIndex: number, pageSize: number) {
+    this.pageNumber = Math.max(pageIndex, 1);
+    this.pageSize = Math.max(pageSize, 1);
+
+    this.localStorageService.setItem(this.localStoragePrefix + "pageNumber", this.pageNumber)
+    this.localStorageService.setItem(this.localStoragePrefix + "pageSize", this.pageSize)
   }
 }

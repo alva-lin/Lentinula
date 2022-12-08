@@ -15,7 +15,7 @@
       [nzLoading]="loading"
       [nzTotal]="total"
       [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
+      [nzPageIndex]="pageNumber"
       [nzNoResult]="emptyTpl"
       nzHideOnSinglePage="true"
       nzSimple
@@ -43,7 +43,11 @@
         <td>
           <nz-button-group>
             <button nz-button nzType="default"
-                    (click)="restore([data.id])">
+                    nz-popconfirm
+                    nzPopconfirmPlacement="topRight"
+                    nzPopconfirmTitle="确认恢复文章？"
+                    [nzPopconfirmShowArrow]="false"
+                    (nzOnConfirm)="restore([data.id])">
               <span nz-icon nzType="undo" nzTheme="outline"></span>
               <span>恢复</span>
             </button>
