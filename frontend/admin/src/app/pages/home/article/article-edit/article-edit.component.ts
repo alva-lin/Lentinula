@@ -35,7 +35,7 @@ export class ArticleEditComponent implements OnInit {
         this.mode = '新增';
       } else {
         this.mode = '编辑';
-        this.id = Number.parseInt(params.get('id')!)
+        this.id = Number.parseInt(idStr)
         this.getArticle();
       }
     })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from 'src/app/services/Services';
 import { environment } from "../../../environments/environment";
@@ -8,7 +8,7 @@ import { environment } from "../../../environments/environment";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   isProduction = environment.production;
 
@@ -16,9 +16,6 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   Logout() {

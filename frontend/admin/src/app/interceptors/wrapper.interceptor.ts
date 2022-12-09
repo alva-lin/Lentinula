@@ -5,19 +5,11 @@ import { ResponseResult } from "../models/ResponseResult";
 
 @Injectable()
 export class WrapperInterceptor implements HttpInterceptor {
-
-  constructor() {
-  }
-
-  isReallyInstanceOf<T>(ctor: { new(...args: any[]): T }, obj: T) {
-    return obj instanceof ctor;
-  }
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       map((event: HttpEvent<unknown>) => {
         if (event instanceof HttpResponse && event.ok) {
-          const data = event.body as ResponseResult<any>;
+          const data = event.body as ResponseResult<unknown>;
 
           if (data.code !== 0) {
             const msg = `request failed: [${ data.code }] ${ data.message }`;
