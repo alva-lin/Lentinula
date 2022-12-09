@@ -13,6 +13,7 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzLayoutModule } from "ng-zorro-antd/layout";
 import { NzMenuModule } from "ng-zorro-antd/menu";
+import { NzMessageModule } from "ng-zorro-antd/message";
 import { ConsoleComponent } from './console/console.component';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -40,6 +41,7 @@ const icons = [
     NzDropDownModule,
     NzBadgeModule,
     NzAlertModule,
+    NzMessageModule,
     NzIconModule.forChild(icons)
   ],
 })
