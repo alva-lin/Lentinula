@@ -1,4 +1,15 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<div class="bg">
+  <div class="main">
+    <div class="header"></div>
+    <div class="container">
+      <div class="content">
+        <ng-container *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]">
+          <div style="height: 64px; color: gray; width: 100%; margin: 12px 24px;" >
+            <a [href]="'#'+i" [id]="i" style="font-size: 24px">{{i}}</a>
+          </div>
+        </ng-container>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </div>
+</div>
