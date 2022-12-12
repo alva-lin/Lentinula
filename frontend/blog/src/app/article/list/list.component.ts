@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from "../article.service";
+import { ArticleInfoDto } from "../models/articleInfoDto";
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private articleService: ArticleService
+  ) { }
+
+  articles: ArticleInfoDto[] = [];
 
   ngOnInit(): void {
+    this.articleService.Get({pageNumber: 1, pageSize: 10}).subscribe(articles => {
+      this.articles = articles.data;
+    })
   }
 
 }
