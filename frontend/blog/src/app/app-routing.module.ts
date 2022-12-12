@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from "./app.component";
 
 const routes: Routes = [
-  { path: '', component: AppComponent }
+  {
+    path: '', loadChildren: () => import('./article/article.module').then(m => m.ArticleModule)
+  }
 ];
 
 @NgModule({
@@ -11,7 +12,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: "enabled",
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 64+16],
+      scrollOffset: [0, 64 + 16],
       onSameUrlNavigation: 'reload'
     })
   ],
