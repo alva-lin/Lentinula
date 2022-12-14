@@ -1,5 +1,5 @@
 .bg {
-  @apply z-0 flex w-full flex-col bg-slate-50;
+  @apply z-0 flex w-full flex-col bg-slate-100;
 }
 
 .main {
@@ -7,7 +7,19 @@
 }
 
 .header {
-  @apply h-16 w-[900px] fixed top-0 z-50;
+  @apply h-16 w-[900px] fixed top-0 z-50 border-b-2 border-b-slate-600 bg-slate-100;
+}
+
+.header .logo {
+  @apply text-slate-600 text-4xl w-[200px] h-full flex justify-center select-none;
+}
+
+.header .logo:hover {
+  @apply cursor-pointer bg-slate-200 text-slate-700;
+}
+
+.header .logo span {
+  @apply m-auto;
 }
 
 .container {

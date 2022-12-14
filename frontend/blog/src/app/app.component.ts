@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 import { environment } from "../environments/environment";
 
 @Component({
@@ -9,4 +10,13 @@ import { environment } from "../environments/environment";
 export class AppComponent {
   title = 'blog';
   beian = environment.beian;
+
+  constructor(
+    private router: Router
+  ) {
+  }
+
+  toIndex() {
+    this.router.navigate(['/']).then();
+  }
 }
