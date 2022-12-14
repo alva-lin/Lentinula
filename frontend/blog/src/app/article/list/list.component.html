@@ -1,6 +1,21 @@
-<p>list works!</p>
+<div class="list" *ngIf="articles.length > 0; else emptyTpl">
+  <ng-container *ngFor="let item of articles">
+    <div class="card" (click)="clickItem(item.id)">
+      <div class="title">{{item.title}}</div>
+      <div class="summary" *ngIf="item.summary !== undefined">{{item.summary}}</div>
+      <div class="info">
+          <span>发布于{{ item.creationTime | date : "yyyy年MM月dd日"}}</span>
+      </div>
+    </div>
+  </ng-container>
+</div>
 
-
-<ng-container *ngFor="let item of articles">
-  <div>{{item.title}}</div>
-</ng-container>
+<ng-template #emptyTpl>
+  <div class="empty">
+    <nz-empty nzNotFoundImage="simple" [nzNotFoundContent]="emptyContentTpl">
+      <ng-template #emptyContentTpl>
+        <span>暂无文章...</span>
+      </ng-template>
+    </nz-empty>
+  </div>
+</ng-template>
