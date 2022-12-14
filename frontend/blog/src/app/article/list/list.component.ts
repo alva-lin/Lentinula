@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from "ng-zorro-antd/message";
+import { Router } from "@angular/router";
 import { ArticleService } from "../article.service";
 import { ArticleInfoDto } from "../models/articleInfoDto";
 
@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private message: NzMessageService
+    private router: Router
   ) { }
 
   articles: ArticleInfoDto[] = [];
@@ -26,7 +26,7 @@ export class ListComponent implements OnInit {
   clickItem(id: number) {
     const article = this.articles.find(item => item.id === id);
     if (article !== undefined) {
-      this.message.info(`点击了 id=${id} 的文章：${article.title}`)
+      this.router.navigate(['/', 'article', id]).then();
     }
   }
 

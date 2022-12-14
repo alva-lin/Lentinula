@@ -1,1 +1,26 @@
-<p>detail works!</p>
+<nz-skeleton [nzLoading]="loading">
+  <ng-template #emptyArticleTpl>
+
+  </ng-template>
+  <div class="article" *ngIf="article !== undefined else emptyArticleTpl">
+    <div class="title">{{ article.title }}</div>
+    <div class="info">
+      <nz-descriptions>
+        <nz-descriptions-item
+          nzTitle="发布于">
+          {{ article.creationTime | date : "yyyy年MM月dd日" }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="上一次修改"
+                              *ngIf="article.modifiedTime !== null">
+          {{ article.modifiedTime | date : "yyyy年MM月dd日" }}
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </div>
+    <div class="summary" *ngIf="article.summary !== undefined">
+      {{article.summary}}
+    </div>
+    <div class="content">
+      {{ article.content }}
+    </div>
+  </div>
+</nz-skeleton>

@@ -1,9 +1,5 @@
 :host {
-  @apply flex h-full w-full flex-1 flex-col;
-}
-
-.list {
-
+  @apply flex h-full w-full flex-1 flex-col px-4 py-2 mt-4;
 }
 
 .card {
