@@ -1,5 +1,6 @@
 ﻿using Lentinula.Utils.Common;
 using Lentinula.Utils.Common.Response;
+using Lentinula.Utils.Extensions;
 
 namespace Lentinula.Api.Common;
 
@@ -23,16 +24,16 @@ public class BasicExceptionMiddleware
         }
         catch (BasicException e)
         {
-            ResponseResult<dynamic> result = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ?
-                ResponseResult.Error(e.ErrorInfos, e.Code, e.Message, e.StackTrace) :
-                ResponseEmptyResult.Error(e.Code, e.Message);
+            ResponseResult<object> result = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ?
+                ResponseResult.Error<object>(null, e.Code, e.Message, e.StackTrace) :
+                ResponseResult.Error<object>(null, e.Code, e.Message);
 
             await context.Response.WriteAsJsonAsync(result, cancellationToken);
 
             _logger.LogError(e, "{Code} {Message} {Info}",
                 e.Code,
                 e.Message,
-                e.ErrorInfos);
+                e.ErrorInfos.ToJson());
         }
         catch (OperationCanceledException)
         {
@@ -43,8 +44,8 @@ public class BasicExceptionMiddleware
             var code = ResponseCode.Error;
 
             ResponseResult<object> result = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ?
-                ResponseResult.Error<object>(VoidObject.Instance, code, e.Message, e.StackTrace) :
-                ResponseResult.Error<object>(VoidObject.Instance, code, e.Message);
+                ResponseResult.Error<object>(null, code, e.Message, e.StackTrace) :
+                ResponseResult.Error<object>(null, code, e.Message);
 
             await context.Response.WriteAsJsonAsync(result, cancellationToken);
 

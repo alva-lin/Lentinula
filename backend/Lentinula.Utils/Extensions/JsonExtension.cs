@@ -5,11 +5,12 @@ namespace Lentinula.Utils.Extensions;
 
 public static class JsonExtension
 {
-    public static string ToJson(this object obj)
+    public static string ToJson(this object? obj)
     {
         var options = new JsonSerializerOptions()
         {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            WriteIndented = true
         };
         return JsonSerializer.Serialize(obj, options);
     }

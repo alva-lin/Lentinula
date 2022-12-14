@@ -14,10 +14,10 @@ export class WrapperInterceptor implements HttpInterceptor {
           if (data.code !== 0) {
             const msg = `request failed: [${ data.code }] ${ data.message }`;
             console.error(msg)
-            throw new Error(msg);
+            // throw new Error(msg);
           }
 
-          if (data.data instanceof Boolean) {
+          if (data.data === undefined || data.data === null) {
             return event.clone({ body: data.code === 0 });
           } else {
             return event.clone({ body: data.data })
