@@ -2,6 +2,14 @@
   @apply px-4 py-2 mt-4;
 }
 
+nz-skeleton {
+  width: 100%;
+}
+
+.article {
+  @apply flex flex-col;
+}
+
 .title {
   @apply text-4xl mb-4;
 }

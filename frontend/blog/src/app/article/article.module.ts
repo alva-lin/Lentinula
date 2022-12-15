@@ -8,12 +8,14 @@ import { NzSkeletonModule } from "ng-zorro-antd/skeleton";
 import { ArticleRoutingModule } from './article-routing.module';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
+import { MarkdownComponent } from './markdown/markdown.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    DetailComponent
+    DetailComponent,
+    MarkdownComponent,
   ],
   imports: [
     CommonModule,

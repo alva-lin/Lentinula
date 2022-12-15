@@ -20,7 +20,7 @@
       {{article.summary}}
     </div>
     <div class="content">
-      {{ article.content }}
+      <app-markdown [text]="article.content || ''"></app-markdown>
     </div>
   </div>
 </nz-skeleton>
