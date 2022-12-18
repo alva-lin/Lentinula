@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { reportUnhandledError } from "rxjs/internal/util/reportUnhandledError";
 import { ArticleService } from "../article.service";
 import { ArticleDto } from "../models/articleDto";
 

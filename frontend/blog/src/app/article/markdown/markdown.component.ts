@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChange, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import * as DOMPurify from "dompurify";
-import highlightjs from 'highlight.js';
 import { marked, Renderer } from "marked";
 
 @Component({
@@ -10,18 +9,19 @@ import { marked, Renderer } from "marked";
   styleUrls: ['./markdown.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class MarkdownComponent implements OnChanges{
+export class MarkdownComponent implements OnChanges {
 
   @Input() text: string;
   data: SafeHtml;
   md: any;
 
   static highlightCode(code: string, language: string): string {
-    if (!(language && highlightjs.getLanguage(language))) {
-      language = 'markdown';
-    }
-
-    const result = highlightjs.highlight(language, code).value;
+    // if (!(language && highlightjs.getLanguage(language))) {
+    //   language = 'markdown';
+    // }
+    //
+    // const result = highlightjs.highlight(language, code).value;
+    const result = '';
     return `
       <code class="hljs ${ language }">${ result }</code>
     `;
@@ -45,7 +45,7 @@ export class MarkdownComponent implements OnChanges{
     return this.sanitizer.bypassSecurityTrustHtml(safeHtml);
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     for (const propName in changes) {
       if (propName === 'text') {
         const value = changes[propName].currentValue;

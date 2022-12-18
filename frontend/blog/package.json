@@ -25,7 +25,6 @@
     "@types/dompurify": "^2.4.0",
     "@types/marked": "^4.0.8",
     "dompurify": "^2.4.1",
-    "highlight.js": "^11.7.0",
     "marked": "^4.2.4",
     "ng-zorro-antd": "14.2.1",
     "rxjs": "~7.5.0",
