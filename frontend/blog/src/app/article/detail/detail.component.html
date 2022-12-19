@@ -15,7 +15,7 @@
       </nz-descriptions-item>
     </nz-descriptions>
   </div>
-  <div class="summary" *ngIf="article.summary !== undefined">
+  <div class="summary" *ngIf="article.summary?.length || 0 > 0">
     {{article.summary}}
   </div>
   <div class="content">
