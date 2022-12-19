@@ -1,0 +1,58 @@
+p {
+  @apply indent-4 my-3 leading-7;
+}
+
+/**
+  heading anchor
+ */
+.header-link {
+  @apply select-none;
+}
+
+
+/**
+  Code
+ */
+pre {
+  @apply rounded-lg my-2;
+}
+
+pre > code {
+  @apply px-4 py-2;
+}
+
+:not(pre) > code {
+  @apply rounded-lg bg-slate-200 mx-1 px-2 py-1 text-red-600;
+}
+
+/**
+  Table
+ */
+div.markdown table {
+  @apply m-auto;
+  min-width: 70%;
+  padding: 10px;
+}
+
+div.markdown table thead tr {
+  @apply border-b-2 border-b-black;
+}
+
+div.markdown table tbody tr {
+  @apply border-b border-b-black;
+}
+
+div.markdown table tr th,
+div.markdown table tr td {
+  @apply px-2 pt-2 pb-1;
+}
+
+div.markdown table tr th:first-child,
+div.markdown table tr td:first-child {
+  @apply pl-4;
+}
+
+div.markdown table tr th:last-child,
+div.markdown table tr td:last-child {
+  @apply pr-4;
+}

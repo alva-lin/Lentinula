@@ -1,3 +1,4 @@
+import { ViewportScroller } from "@angular/common";
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from "../article.service";
@@ -21,7 +22,8 @@ export class DetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private viewportScroller: ViewportScroller
   ) {
   }
 
@@ -46,6 +48,13 @@ export class DetailComponent implements OnInit {
         this.router.navigate(['/']).then();
       }
       this.loading = false;
+
+      const fragment = this.route.snapshot.fragment;
+      if (fragment !== null) {
+        setTimeout(() => {
+          this.viewportScroller.scrollToAnchor(fragment)
+        })
+      }
     })
   }
 }
