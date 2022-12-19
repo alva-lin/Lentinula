@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChange, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import * as DOMPurify from "dompurify";
-import { marked, Renderer } from "marked";
+import { customMarked } from "./MarkedRenderer";
 
 @Component({
   selector: 'app-markdown',
@@ -15,25 +15,10 @@ export class MarkdownComponent implements OnChanges {
   data: SafeHtml;
   md: any;
 
-  static highlightCode(code: string, language: string): string {
-    // if (!(language && highlightjs.getLanguage(language))) {
-    //   language = 'markdown';
-    // }
-    //
-    // const result = highlightjs.highlight(language, code).value;
-    const result = '';
-    return `
-      <code class="hljs ${ language }">${ result }</code>
-    `;
-  }
-
   constructor(
     private sanitizer: DomSanitizer
   ) {
-    const renderer = new Renderer();
-    renderer.code = MarkdownComponent.highlightCode;
-
-    this.md = marked.setOptions({ renderer });
+    this.md = customMarked;
 
     this.data = '';
     this.text = '';
