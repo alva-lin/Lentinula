@@ -25,7 +25,7 @@ export class AuthService {
     return authInfo !== null && new Date(authInfo.ExpireTime) > new Date();
   }
 
-  GetAndResetRedirectUrl() : string {
+  GetAndResetRedirectUrl(): string {
     const url = this.redirectUrl;
     this.redirectUrl = "";
     return url;

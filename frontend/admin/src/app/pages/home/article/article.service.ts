@@ -1,9 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import {
-  PaginatedList
-} from "src/app/models/Models";
+import { PaginatedList } from "src/app/models/Models";
 import { environment } from "../../../../environments/environment";
 import { ArticleDeleteInfoDto } from "./models/articleDeleteInfoDto";
 import { ArticleDto } from "./models/articleDto";

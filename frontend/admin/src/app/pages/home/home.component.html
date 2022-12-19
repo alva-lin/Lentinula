@@ -1,6 +1,6 @@
 <div class="bg">
   <div class="header">
-    <div class="logo-container" *ngIf="isProduction else testLogoTpl">
+    <div *ngIf="isProduction else testLogoTpl" class="logo-container">
       <div class="logo">Lentinula</div>
     </div>
     <ng-template #testLogoTpl>

@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    title: `登录 - ${baseTitle}`
+    title: `登录 - ${ baseTitle }`
   }
 ];
 

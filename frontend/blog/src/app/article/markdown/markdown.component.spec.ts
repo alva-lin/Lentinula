@@ -8,9 +8,9 @@ describe('MarkdownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MarkdownComponent ]
-    })
-    .compileComponents();
+        declarations: [MarkdownComponent]
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(MarkdownComponent);
     component = fixture.componentInstance;

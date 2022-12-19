@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import {
   ArrowLeftOutline,
-  DeleteOutline, EditOutline,
+  DeleteOutline,
+  EditOutline,
   LoadingOutline,
-  PlusOutline, SaveOutline, UndoOutline
+  PlusOutline,
+  SaveOutline,
+  UndoOutline
 } from "@ant-design/icons-angular/icons";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";

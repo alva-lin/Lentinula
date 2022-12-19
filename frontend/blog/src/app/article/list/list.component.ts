@@ -15,14 +15,13 @@ export class ListComponent implements OnInit {
   hasNext = false;
   firstLoading = false;
   loading = false;
+  articles: ArticleInfoDto[] = [];
 
   constructor(
     private articleService: ArticleService,
     private router: Router
   ) {
   }
-
-  articles: ArticleInfoDto[] = [];
 
   ngOnInit(): void {
     this.firstLoading = true;

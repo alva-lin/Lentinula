@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   CloseCircleOutline,
-  EyeInvisibleOutline, EyeOutline,
+  EyeInvisibleOutline,
+  EyeOutline,
   LockOutline,
   UserOutline
 } from "@ant-design/icons-angular/icons";

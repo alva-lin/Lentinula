@@ -1,7 +1,7 @@
 <ng-template #emptyArticleTpl>
 
 </ng-template>
-<div class="article" *ngIf="article !== undefined else emptyArticleTpl">
+<div *ngIf="article !== undefined else emptyArticleTpl" class="article">
   <div class="title">{{ article.title }}</div>
   <div class="info">
     <nz-descriptions>
@@ -9,13 +9,13 @@
         nzTitle="发布于">
         {{ article.creationTime | date : "yyyy年MM月dd日" }}
       </nz-descriptions-item>
-      <nz-descriptions-item nzTitle="上一次修改"
-                            *ngIf="article.modifiedTime !== null">
+      <nz-descriptions-item *ngIf="article.modifiedTime !== null"
+                            nzTitle="上一次修改">
         {{ article.modifiedTime | date : "yyyy年MM月dd日" }}
       </nz-descriptions-item>
     </nz-descriptions>
   </div>
-  <div class="summary" *ngIf="article.summary?.length || 0 > 0">
+  <div *ngIf="article.summary?.length || 0 > 0" class="summary">
     {{article.summary}}
   </div>
   <div class="content">

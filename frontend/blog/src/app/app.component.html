@@ -1,7 +1,7 @@
 <div class="bg">
   <div class="main">
     <div class="header">
-      <div class="logo" (click)="toIndex()">
+      <div (click)="toIndex()" class="logo">
         <span>Lentinula</span>
       </div>
     </div>
@@ -10,7 +10,7 @@
         <router-outlet></router-outlet>
       </div>
       <div class="footer">
-        <a href="https://beian.miit.gov.cn/" class="m-auto">{{beian}}</a>
+        <a class="m-auto" href="https://beian.miit.gov.cn/">{{beian}}</a>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 p {
-  @apply indent-4 my-3 leading-7;
+  @apply my-3 indent-4 leading-7;
 }
 
 /**
@@ -14,7 +14,7 @@ p {
   Code
  */
 pre {
-  @apply rounded-lg my-2;
+  @apply my-2 rounded-lg;
 }
 
 pre > code {
@@ -22,7 +22,7 @@ pre > code {
 }
 
 :not(pre) > code {
-  @apply rounded-lg bg-slate-200 mx-1 px-2 py-1 text-red-600;
+  @apply mx-1 rounded-lg bg-slate-200 px-2 py-1 text-red-600;
 }
 
 /**

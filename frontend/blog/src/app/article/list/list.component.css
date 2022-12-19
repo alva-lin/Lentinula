@@ -1,17 +1,17 @@
 :host {
-  @apply flex h-full w-full flex-1 flex-col px-4 py-2 mt-4;
+  @apply mt-4 flex h-full w-full flex-1 flex-col px-4 py-2;
 }
 
 .empty, .loading {
-  @apply m-auto flex-1 flex flex-col justify-center;
+  @apply m-auto flex flex-1 flex-col justify-center;
 }
 
 .more {
-  @apply bg-slate-200 select-none;
+  @apply select-none bg-slate-200;
 }
 
 .card {
-  @apply px-8 py-4 mt-4 w-full rounded-2xl border-2 border-solid border-slate-600 select-none;
+  @apply mt-4 w-full select-none rounded-2xl border-2 border-solid border-slate-600 px-8 py-4;
 }
 
 .card:last-of-type {
@@ -19,11 +19,11 @@
 }
 
 .card:hover {
-  @apply ml-2 mb-6 mt-2 cursor-pointer;
+  @apply mt-2 mb-6 ml-2 cursor-pointer;
 }
 
 .card .title {
-  @apply text-2xl mb-2;
+  @apply mb-2 text-2xl;
 }
 
 .card .summary {

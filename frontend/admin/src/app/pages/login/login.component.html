@@ -1,7 +1,7 @@
 <div class="bg">
   <div class="container">
     <div class="header">
-      <div class="logo" *ngIf="isProduction else testLogoTpl">Lentinula</div>
+      <div *ngIf="isProduction else testLogoTpl" class="logo">Lentinula</div>
       <ng-template #testLogoTpl>
         <nz-ribbon nzText="测">
           <div class="logo">Lentinula</div>

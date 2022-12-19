@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  DashboardOutline,
-  FileTextOutline, UserOutline
-} from "@ant-design/icons-angular/icons";
+import { DashboardOutline, FileTextOutline, UserOutline } from "@ant-design/icons-angular/icons";
 import { NzAlertModule } from "ng-zorro-antd/alert";
 import { NzAvatarModule } from "ng-zorro-antd/avatar";
 import { NzBadgeModule } from "ng-zorro-antd/badge";

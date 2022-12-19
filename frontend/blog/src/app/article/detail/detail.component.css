@@ -1,11 +1,11 @@
 :host {
-  @apply px-4 py-2 mt-4;
+  @apply mt-4 px-4 py-2;
 }
 
 .title {
-  @apply text-4xl mb-4;
+  @apply mb-4 text-4xl;
 }
 
 .summary {
-  @apply rounded-2xl border border-slate-300 px-6 py-4 mb-4 bg-slate-200;
+  @apply mb-4 rounded-2xl border border-slate-300 bg-slate-200 px-6 py-4;
 }

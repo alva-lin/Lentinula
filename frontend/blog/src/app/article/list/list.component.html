@@ -1,13 +1,13 @@
 <ng-template #loadingTpl [ngIf]="firstLoading">
   <div class="loading">
     <ng-template #indicatorTemplate><span nz-icon nzType="loading" style="font-size: 32px;"></span></ng-template>
-    <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+    <nz-spin [nzIndicator]="indicatorTemplate" nzSimple></nz-spin>
   </div>
 </ng-template>
 
 <ng-template #emptyTpl [ngIf]="!firstLoading && articles.length === 0">
   <div class="empty">
-    <nz-empty nzNotFoundImage="simple" [nzNotFoundContent]="emptyContentTpl">
+    <nz-empty [nzNotFoundContent]="emptyContentTpl" nzNotFoundImage="simple">
       <ng-template #emptyContentTpl>
         <span>暂无文章...</span>
       </ng-template>
@@ -15,19 +15,25 @@
   </div>
 </ng-template>
 
-<div class="list" *ngIf="articles.length > 0">
+<div *ngIf="articles.length > 0" class="list">
   <ng-container *ngFor="let item of articles">
-    <div class="card" (click)="clickItem(item.id)">
+    <div (click)="clickItem(item.id)" class="card">
       <div class="title">{{item.title}}</div>
-      <div class="summary" *ngIf="item.summary !== undefined">{{item.summary}}</div>
+      <div *ngIf="item.summary !== undefined" class="summary">{{item.summary}}</div>
       <div class="info">
         <span>发布于{{ item.creationTime | date : "yyyy年MM月dd日"}}</span>
       </div>
     </div>
   </ng-container>
-  <button *ngIf="hasNext" nz-button nzType="text" nzBlock [nzLoading]="loading" nzSize="large" nzShape="round"
+  <button (click)="loadMore()"
+          *ngIf="hasNext"
+          [nzLoading]="loading"
           class="more"
-          (click)="loadMore()"
-  >加载
+          nz-button
+          nzBlock
+          nzShape="round"
+          nzSize="large"
+          nzType="text">
+    加载
   </button>
 </div>
