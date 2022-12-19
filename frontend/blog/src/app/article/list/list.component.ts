@@ -10,16 +10,35 @@ import { ArticleInfoDto } from "../models/articleInfoDto";
 })
 export class ListComponent implements OnInit {
 
+  pageNumber = 0;
+  pageSize = 6;
+  hasNext = false;
+  firstLoading = false;
+  loading = false;
+
   constructor(
     private articleService: ArticleService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   articles: ArticleInfoDto[] = [];
 
   ngOnInit(): void {
-    this.articleService.Get({pageNumber: 1, pageSize: 10}).subscribe(articles => {
-      this.articles = articles.data;
+    this.firstLoading = true;
+    this.loadMore();
+  }
+
+  loadMore() {
+    if (this.loading) return;
+    this.loading = true;
+    this.articleService.Get({ pageNumber: this.pageNumber + 1, pageSize: this.pageSize }).subscribe(articles => {
+      this.articles.push(...articles.data)
+      this.pageNumber = articles.currentPage;
+      this.pageSize = articles.pageSize
+      this.hasNext = articles.hasNext;
+      this.firstLoading = false;
+      this.loading = false;
     })
   }
 
